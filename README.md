@@ -1,5 +1,5 @@
-Color Squared
-=============
+Color²
+======
 
 [![Build Status](https://travis-ci.org/HarrisonCTEC/Color-Squared.svg?branch=master)](https://travis-ci.org/HarrisonCTEC/Color-Squared)
 
