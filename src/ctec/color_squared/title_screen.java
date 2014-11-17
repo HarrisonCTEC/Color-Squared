@@ -11,5 +11,6 @@ public class title_screen extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        getActionBar().setTitle("Color²");
     }
 }
