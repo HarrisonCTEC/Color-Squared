@@ -2,7 +2,7 @@ language: android
 
 env:
   global:
-    secure: kpOs8EbkNSVSOwff2q9nSB4i+i5HI5OFvEcGLZWRe0mVQJZaAECnv+tQ4ZDqNJHB4yvPzH0DYfxlos7q+NJfhwue1m3yRhGNEe7xMV57qwQfGNe8hiyiMzrLo9WfiDNCnqzDGXbjYH47VYroGEQo/SbmwrzwW8ES3J4KMxQZzmQ=
+    - secure: gedzEaFgsSlsllrGWGk7xFhau9gGna96J9Jp30HhUVcnWA9G8m7J7lOeTdV2i7ZkDTTQY/s2yB3wSVu4Bm4L8twJQDcARIEchlZ0s2In3DSjV0psce8WOLe1KKbh76viKz6W/LNyFgDLiGXDdns5Nv09/Eu8vN0nh4kRQfSdaVw=
 
 android:
   components:
