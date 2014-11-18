@@ -1,6 +1,6 @@
 package ctec.color_squared;
 
-publix class Tiles {
+public class Tiles {
   private boolean oneHotButton = false;
   private boolean twoHotButton = false;
   private boolean threeHotButton = false;
