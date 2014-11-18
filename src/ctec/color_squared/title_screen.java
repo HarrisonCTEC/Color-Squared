@@ -18,9 +18,10 @@ public class title_screen extends Activity
         setContentView(R.layout.main);
         
         startButton = (Button) findViewById(R.id.startButton);
-        
+ 
         getActionBar().setTitle(R.string.app_name_fancy);
         
+        setupListeners();
     }
     
     private void setupListeners()
