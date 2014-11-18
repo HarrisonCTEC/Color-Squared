@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Color Squared</string>
     <string name="app_name_fancy">Color²</string>
+    <string name="title_activity_game_screen">Game Screen</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>
