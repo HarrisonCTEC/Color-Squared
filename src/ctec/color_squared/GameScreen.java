@@ -14,6 +14,18 @@ public class GameScreen extends Activity
 	private List<Color> playerColors;
 	private int playerProgress;
 	private Tiles gameTile;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_game_screen);
+
+        playerColors = new ArrayList<Color>();
+        playerProgress = 0;
+        resetGrid();
+
+    }
 	
 	private void resetGrid()
 	{
@@ -128,18 +140,6 @@ public class GameScreen extends Activity
 		}
 		
 		return returnTile;
-
-	}
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_game_screen);
-		
-		playerColors = new ArrayList<Color>();
-		playerProgress = 0;
-		resetGrid();
 
 	}
 }
