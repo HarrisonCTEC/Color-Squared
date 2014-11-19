@@ -4,16 +4,6 @@ import android.graphics.Color;
 
 public class Tiles
 {
-	private boolean oneHotButton;
-	private boolean twoHotButton;
-	private boolean threeHotButton;
-	private boolean fourHotButton ;
-	private boolean fiveHotButton;
-	private boolean sixHotButton ;
-	private boolean sevenHotButton;
-	private boolean eightHotButton;
-	private boolean nineHotButton;
-
 	private Color oneColor;
 	private Color twoColor;
 	private Color threeColor;
@@ -31,15 +21,6 @@ public class Tiles
 
 	public void tiles()
 	{
-		this.oneHotButton = false;
-		this.twoHotButton = false;
-		this.threeHotButton = false;
-		this.fourHotButton = false;
-		this.fiveHotButton = false;
-		this.sixHotButton = false;
-		this.sevenHotButton = false;
-		this.eightHotButton = false;
-		this.nineHotButton = false;
 		this.oneColor = null;
 		this.twoColor = null;
 		this.threeColor = null;
@@ -49,6 +30,7 @@ public class Tiles
 		this.sevenColor = null;
 		this.eightColor = null;
 		this.nineColor = null;
+
         this.hotButton = 0;
 	}
 
