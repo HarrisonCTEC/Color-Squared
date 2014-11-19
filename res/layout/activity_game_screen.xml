@@ -1,78 +1,56 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/TableLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/base3"
+    android:gravity="center"
+    android:layout_gravity="center"
     tools:context="${relativePackage}.${activityClass}" >
-
+    
+	<TableRow>
     <Button
         android:id="@+id/button1"
-        style="@style/gameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="48dp" />
+        style="@style/gameButton" />
 
     <Button
         android:id="@+id/button2"
-        style="@style/gameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_marginLeft="46dp"
-        android:layout_toRightOf="@+id/button1" />
+        style="@style/gameButton" />
 
     <Button
         android:id="@+id/button3"
-        style="@style/gameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button2"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="11dp" />
+        style="@style/gameButton" />
+	</TableRow>
+	
+	<TableRow>
+    <Button
+<<<<<<< HEAD
+=======
+        android:id="@+id/button4"
+        style="@style/gameButton" />
 
     <Button
+>>>>>>> origin/master
         android:id="@+id/button5"
-        style="@style/gameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button4"
-        android:layout_alignBottom="@+id/button4"
-        android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@+id/button4" />
+        style="@style/gameButton" />
 
     <Button
         android:id="@+id/button6"
-        style="@style/gameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button5"
-        android:layout_alignRight="@+id/button3"
-        android:layout_marginBottom="7dp"
-        android:layout_marginRight="17dp" />
+        style="@style/gameButton" />
+    </TableRow>
 
+	<TableRow>
     <Button
         android:id="@+id/button7"
-        style="@style/gameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button4"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="8dp" />
+        style="@style/gameButton" />
 
     <Button
         android:id="@+id/button8"
-        style="@style/gameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button7"
-        android:layout_alignLeft="@+id/button5" />
+        style="@style/gameButton" />
 
     <Button
         android:id="@+id/button9"
+<<<<<<< HEAD
         style="@style/gameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,3 +68,8 @@
         android:layout_toLeftOf="@+id/button2" />
 
 </RelativeLayout>
+=======
+        style="@style/gameButton" />
+	</TableRow>
+</TableLayout>
+>>>>>>> origin/master
