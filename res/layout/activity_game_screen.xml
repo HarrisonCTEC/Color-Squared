@@ -3,7 +3,7 @@
     android:id="@+id/TableLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/base3"
+    android:background="@color/solBase3"
     android:gravity="center"
     android:layout_gravity="center"
     tools:context="${relativePackage}.${activityClass}" >

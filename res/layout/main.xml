@@ -3,7 +3,7 @@
     android:id="@+id/RelativeLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/base3"
+    android:background="@color/solBase3"
     android:orientation="vertical" >
 
     <TextView
@@ -15,7 +15,7 @@
         android:layout_marginTop="75dp"
         android:text="@string/app_name_fancy"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/base03"
+        android:textColor="@color/solBase03"
         android:textSize="48sp" />
 
     <Button
@@ -24,10 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@color/red"
+        android:background="@color/solRed"
         android:padding="10dp"
         android:text="Start"
-        android:textColorHint="@color/base03"
+        android:textColorHint="@color/solBase03"
         android:textSize="25sp" />
 
     <Button
@@ -37,10 +37,10 @@
         android:layout_below="@+id/startButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"
-        android:background="@color/blue"
+        android:background="@color/solBlue"
         android:padding="10dp"
         android:text="About"
-        android:textColor="E0A0C0"
+        android:textColor="@color/solBase03"
         android:textSize="25sp" />
 
 </RelativeLayout>
