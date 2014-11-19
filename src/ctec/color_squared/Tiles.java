@@ -14,10 +14,10 @@ public class Tiles
 	private Color eightColor;
 	private Color nineColor;
 
-    /**
-     * 1-9 represents tiles, 0 represents unset
-     */
-    private int hotButton;
+    	/**
+     	* 1-9 represents tiles, 0 represents unset
+     	*/
+    	private int hotButton;
 
 	public void tiles()
 	{
