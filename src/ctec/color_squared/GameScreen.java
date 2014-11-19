@@ -83,63 +83,7 @@ public class GameScreen extends Activity
 		int specialTile = (int) Math.ceil(Math.random() * 9);
 		Color currentColor = (Color) playerColors.get(playerProgress);
 		resetGrid();
-		int returnTile = 0;
-		if (specialTile == 1)
-		{
-			gameTile.setOneHotButton(true);
-			gameTile.setOneColor(currentColor);
-			returnTile = 1;
-		}
-		else if (specialTile == 2)
-		{
-			gameTile.setTwoHotButton(true);
-			gameTile.setOneColor(currentColor);
-			returnTile = 2;
-		}
-		else if (specialTile == 3)
-		{
-			gameTile.setThreeHotButton(true);
-			gameTile.setOneColor(currentColor);
-			returnTile = 3;
-		}
-		else if (specialTile == 4)
-		{
-			gameTile.setFourHotButton(true);
-			gameTile.setOneColor(currentColor);
-			returnTile = 4;
-		}
-		else if (specialTile == 5)
-		{
-			gameTile.setFiveHotButton(true);
-			gameTile.setOneColor(currentColor);
-			returnTile = 5;
-		}
-		else if (specialTile == 6)
-		{
-			gameTile.setSixHotButton(true);
-			gameTile.setOneColor(currentColor);
-			returnTile = 6;
-		}
-		else if (specialTile == 7)
-		{
-			gameTile.setSevenHotButton(true);
-			gameTile.setOneColor(currentColor);
-			returnTile = 7;
-		}
-		else if (specialTile == 8)
-		{
-			gameTile.setEightHotButton(true);
-			gameTile.setOneColor(currentColor);
-			returnTile = 8;
-		}
-		else if (specialTile == 9)
-		{
-			gameTile.setNineHotButton(true);
-			gameTile.setOneColor(currentColor);
-			returnTile = 9;
-		}
-		
-		return returnTile;
-
+        gameTile.setHotButton(specialTile);
+        return specialTile;
 	}
 }

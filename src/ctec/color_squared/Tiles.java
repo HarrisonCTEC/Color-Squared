@@ -24,6 +24,11 @@ public class Tiles
 	private Color eightColor;
 	private Color nineColor;
 
+    /**
+     * 1-9 represents tiles, 0 represents unset
+     */
+    private int hotButton;
+
 	public void tiles()
 	{
 		this.oneHotButton = false;
@@ -44,7 +49,18 @@ public class Tiles
 		this.sevenColor = null;
 		this.eightColor = null;
 		this.nineColor = null;
+        this.hotButton = 0;
 	}
+
+    public void setHotButton(int hotButton)
+    {
+        this.hotButton = hotButton;
+    }
+
+    public int getHotButton()
+    {
+        return this.hotButton;
+    }
 
 	public void setOneColor(Color oneColor)
 	{
