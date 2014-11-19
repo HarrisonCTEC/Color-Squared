@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="Pink">#E0A0C0</color>
+    <color name="Magenta">#E04080</color>
+    <color name="Red">#E04040</color>
+    <color name="Yellow">#C08000</color>
+    <color name="Orange">#E06040</color>
+    <color name="Green">#C0E000</color>
+    <color name="Grue">#6EA080</color>
+    <color name="Purple">#6080C0</color>
+    
+</resources>
