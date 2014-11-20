@@ -218,8 +218,13 @@ public class Tiles
 	    this.hotButton = hotButton;
 	}
 
-	public int getHotButton()
+	public boolean isHotButton(int tileNumber)
 	{
-        	return this.hotButton;
+        	boolean returnValue = false;
+        	if(tileNumber == this.hotButton)
+        	{
+        		returnValue = true;
+        	}
+        	return returnValue;
     	}
 }
