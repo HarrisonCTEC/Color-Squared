@@ -4,15 +4,6 @@ import android.graphics.Color;
 
 public class Tiles
 {
-	private Color oneColor;
-	private Color twoColor;
-	private Color threeColor;
-	private Color fourColor;
-	private Color fiveColor;
-	private Color sixColor;
-	private Color sevenColor;
-	private Color eightColor;
-	private Color nineColor;
 	private Color[] gridPattern = new Color[8];
 	private boolean[] usedColors = new boolean[8];
 	private Color pink, magenta, red, yellow, orange, green, grue, blue, purple;
@@ -35,135 +26,191 @@ public class Tiles
 
 	public void tiles()
 	{
-		this.oneColor = null;
-		this.twoColor = null;
-		this.threeColor = null;
-		this.fourColor = null;
-		this.fiveColor = null;
-		this.sixColor = null;
-		this.sevenColor = null;
-		this.eightColor = null;
-		this.nineColor = null;
-
-        this.hotButton = 0;
+	        this.hotButton = 0;
 	}
  
  	public Color randomColor()
  	{
  		int randomNumber = (int)Math.ceil(Math.random()*9);
  		Color returnValue = null;
- 		if(randomNumber ==)
+ 		if(randomNumber == 1)
  		{
- 			
+ 			returnValue = pink;
  		}
- 		else if(randomNumber==)
+ 		else if(randomNumber == 2)
  		{
- 			
+ 			returnValue = magenta;
  		}
- 		else if(randomNumber==)
+ 		else if(randomNumber == 3)
  		{
- 			
+ 			returnValue = red;
  		}
- 		else if(randomNumber==)
+ 		else if(randomNumber == 4)
  		{
- 			
+ 			returnValue = yellow;
  		}
- 		else if(randomNumber==)
+ 		else if(randomNumber == 5)
  		{
- 			
+ 			returnValue = orange;
  		}
- 		else if(randomNumber==)
+ 		else if(randomNumber == 6)
  		{
- 			
+ 			returnValue = green;
  		}
- 		else if(randomNumber==)
+ 		else if(randomNumber == 7)
  		{
- 			
+ 			returnValue = grue;
  		}
+ 		else if(randomNumber == 8)
+ 		{
+ 			returnValue = blue;
+ 		}
+ 		else if(randomNumber == 9)
+ 		{
+ 			returnValue = purple;
+ 		}
+ 		return returnValue;
  	}
  
+ 	/**
+ 	 * Checks to see if a color has been used or not. Returns true if the color is being used already
+ 	 */
+ 	private boolean isSetColor(Color someColor)
+ 	{
+ 		boolean returnValue = false;
+ 		
+ 		if(someColor == pink)
+ 		{
+ 			if(usedColors[0])
+ 			{
+ 				returnValue = true;
+ 			}
+ 		}
+ 		else if(someColor== magenta)
+ 		{
+ 			if(usedColors[1])
+ 			{
+ 				returnValue = true;
+ 			}
+ 		}
+ 		else if(someColor == red)
+ 		{
+ 			if(usedColors[2])
+ 			{
+ 				returnValue = true;
+ 			}	
+ 		}
+ 		else if(someColor == yellow)
+ 		{
+ 			if(usedColors[3])
+ 			{
+ 				returnValue = true;
+ 			}	
+ 		}
+ 		else if(someColor == orange)
+ 		{
+ 			if(usedColors[4])
+ 			{
+ 				returnValue = true;
+ 			}
+ 		}
+ 		else if(someColor == green)
+ 		{
+ 			if(usedColors[5])
+ 			{
+ 				returnValue = true;
+ 			}	
+ 		}
+ 		else if(someColor == grue)
+ 		{
+ 			if(usedColors[6])
+ 			{
+ 				returnValue = true;
+ 			}
+ 		}
+ 		else if(someColor == blue)
+ 		{
+ 			if(usedColors[7])
+ 			{
+ 				returnValue = true;
+ 			}	
+ 		}
+ 		else if(someColor == purple)
+ 		{
+ 			if(usedColors[8])
+ 			{
+ 				returnValue = true;
+ 			}	
+ 		}
+ 		
+ 		return returnValue;
+ 	}
+ 
+ 	/**
+ 	 * When a color is being used, this method updates the boolean array
+ 	 */
  	private void setUsedColors(Color currentColor)
+ 	{
  		if(cuurentColor == pink)
  		{
- 			usedColors[0] = True
+ 			usedColors[0] = true;
  		}
  		else if(currentColor == magenta)
  		{
- 			usedColors[1] = True	
+ 			usedColors[1] = true;	
  		}
  		else if(currentColor == red)
  		{
- 			usedColors[2] = True	
+ 			usedColors[2] = true;	
  		}
  		else if(currentColor == yellow)
  		{
- 			usedColors[3] = True	
+ 			usedColors[3] = true;	
  		}
  		else if(currentColor == orange)
  		{
- 			usedColors[4] = True
+ 			usedColors[4] = true;
  		}
  		else if(currentColor == green)
  		{
- 			usedColors[5] = True	
+ 			usedColors[5] = true;	
  		}
  		else if(currentColor == grue)
  		{
- 			usedColors[6] = True	
+ 			usedColors[6] = true;	
  		}
  		else if(currentColor == blue)
  		{
- 			usedColors[7] = True	
+ 			usedColors[7] = true;	
  		}
  		else if(currentColor == purple)
  		{
- 			usedColors[8] = True	
+ 			usedColors[8] = true;	
  		}
+ 	}
+ 	
  	private void setHotButtonColorAndNumber(int hotButton, Color currentColor)
  	{
- 		if(hotButton == 1)
-		{
-			gridPattern[hotButton] = currentColor;
-			usedColors[]
-		}
-		else if(hotButton == 2)
-		{
-			gridPattern[hotButton] = currentColor;
-		}
-		else if(hotButton == 3)
-		{
-			gridPattern[hotButton] = currentColor;
-		}
-		else if(hotButton == 4)
-		{
-			gridPattern[hotButton] = currentColor;
-		}
-		else if(hotButton == 5)
-		{
-			gridPattern[hotButton] = currentColor;
-		}
-		else if(hotButton == 6)
-		{
-			gridPattern[hotButton] = currentColor;
-		}
-		else if(hotButton == 7)
-		{
-			gridPattern[hotButton] = currentColor;
-		}
-		else if(hotButton == 8)
-		{
-			gridPattern[hotButton] = currentColor;
-		}
-		else if(hotButton == 9)
-		{
-			gridPattern[hotButton] = currentColor;
-		}
+ 		gridPattern[hotButton] = currentColor;
+		setUsedColors(currentColor);
  	}
  
-	public fillGameGrid(Color currentColor)
+	public Color[] fillGameGrid(Color currentColor)
 	{
-		setHotButtonColorAndNumber(hotButton, currentColor);
-		if(usedColors[1])
+		int counter = 0;
+		Color random = null;
+		setHotButtonColorAndNumber(this.hotButton, currentColor);
+		while(counter != 8)
+		{
+			random = randomColor();
+			if(!isSetColor(random) && !usedColors[counter])
+			{
+				gridPattern[counter] = random;
+				setUsedColors(random);
+			}
+			counter++;
+		}
+		return gridPattern;
 	}
 
 	public void setHotButton(int hotButton)
@@ -175,94 +222,4 @@ public class Tiles
 	{
         	return this.hotButton;
     	}
-
-	public void setOneColor(Color oneColor)
-	{
-		this.oneColor = oneColor;
-	}
-
-	public void setTwoColor(Color twoColor)
-	{
-		this.twoColor = twoColor;
-	}
-
-	public void setThreeColor(Color threeColor)
-	{
-		this.threeColor = threeColor;
-	}
-
-	public void setFourColor(Color fourColor)
-	{
-		this.fourColor = fourColor;
-	}
-
-	public void setFiveColor(Color fiveColor)
-	{
-		this.fiveColor = fiveColor;
-	}
-
-	public void setSixColor(Color sixColor)
-	{
-		this.sixColor = sixColor;
-	}
-
-	public void setSevenColor(Color sevenColor)
-	{
-		this.sevenColor = sevenColor;
-	}
-
-	public void setEightColor(Color eightColor)
-	{
-		this.eightColor = eightColor;
-	}
-
-	public void setNineColor(Color nineColor)
-	{
-		this.nineColor = nineColor;
-	}
-
-	public Color getOneColor()
-	{
-		return oneColor;
-	}
-
-	public Color getTwoColor()
-	{
-		return twoColor;
-	}
-
-	public Color getThreeColor()
-	{
-		return threeColor;
-	}
-
-	public Color getFourColor()
-	{
-		return fourColor;
-	}
-
-	public Color getFiveColor()
-	{
-		return fiveColor;
-	}
-
-	public Color getSixColor()
-	{
-		return sixColor;
-	}
-
-	public Color getSevenColor()
-	{
-		return sevenColor;
-	}
-
-	public Color getEightColor()
-	{
-		return eightColor;
-	}
-
-	public Color getNineColor()
-	{
-		return nineColor;
-	}
 }
