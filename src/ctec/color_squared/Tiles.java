@@ -8,7 +8,7 @@ public class Tiles
 	private boolean[] usedColors = new boolean[8];
 	private Color pink, magenta, red, yellow, orange, green, grue, blue, purple;
 
-	pink = Color.parseColor("#E0A0C0");
+	pink = Color.parseColor("#E0A0C0"); //This converts from a hex string into a Color int
         magenta = Color.parseColor("#E04080");
         red = Color.parseColor("#E04040");
         yellow = Color.parseColor("#C08000");
@@ -19,9 +19,9 @@ public class Tiles
         purple = Color.parseColor("#6080C0");
 	
 
-    	/**
-     	* 1-9 represents tiles, 0 represents unset
-     	*/
+/**
+* 1-9 represents tiles, 0 represents unset
+*/
     	private int hotButton;
 
 	public void tiles()
@@ -29,13 +29,17 @@ public class Tiles
 	        this.hotButton = 0;
 	}
  
+ /**
+  * Returns one of the nine colors randomly when called
+  * @return the randomly selected Color
+  */
  	public Color randomColor()
  	{
- 		int randomNumber = (int)Math.ceil(Math.random()*9);
- 		Color returnValue = null;
- 		if(randomNumber == 1)
+ 		int randomNumber = (int)Math.ceil(Math.random()*9); //Generate a number between 1 and 9
+ 		Color returnValue = null; //Set a default return value
+ 		if(randomNumber == 1) //If that randomly generated number is 1
  		{
- 			returnValue = pink;
+ 			returnValue = pink; //Make the return value pink
  		}
  		else if(randomNumber == 2)
  		{
@@ -69,15 +73,18 @@ public class Tiles
  		{
  			returnValue = purple;
  		}
- 		return returnValue;
+ 		
+ 		return returnValue; //What ever that returnValue was changed to in the above conditionals, return the returnValue
  	}
  
- 	/**
- 	 * Checks to see if a color has been used or not. Returns true if the color is being used already
- 	 */
+/**
+* Checks to see if a color has been used or not. Returns true if the color is being used already
+* @param someColor the Color that we are questioning if it has been used aldready or not.
+* @return If the color has aldready been placed in the array, true
+*/
  	private boolean isSetColor(Color someColor)
  	{
- 		boolean returnValue = false;
+ 		boolean returnValue = false; //Make a default returnValue
  		
  		if(someColor == pink)
  		{
@@ -146,9 +153,10 @@ public class Tiles
  		return returnValue;
  	}
  
- 	/**
- 	 * When a color is being used, this method updates the boolean array
- 	 */
+ /**
+ * When a color is being used, this method updates the boolean array
+ * Every color that the game uses has a number assoisated to it, but is not ever formely used in code
+ */
  	private void setUsedColors(Color currentColor)
  	{
  		if(cuurentColor == pink)
@@ -189,28 +197,39 @@ public class Tiles
  		}
  	}
  	
+ /**
+  * This allows the computer to know what tile is special as well the color of that tile. This prevents duplicate
+  * tile colors
+  * @param hotButton the int that was randomly created at the game screen activity
+  * @param currentColor the color of the hotButton
+  */
  	private void setHotButtonColorAndNumber(int hotButton, Color currentColor)
  	{
- 		gridPattern[hotButton] = currentColor;
-		setUsedColors(currentColor);
+ 		gridPattern[hotButton] = currentColor; //Take the current color that the player should find at this poijnt and shove it inside the gridPattern Array at the index coresponding with the tile's number
+		setUsedColors(currentColor); //Change the boolean Array so we don't randomly generate this nnumber again.
  	}
- 
+ 	
+ /**
+  * Fills a Color Array of the all the game tiles
+  * @param currentColor the color we are currently at so we know not to generate it, it is also the color of the hotButton
+  * @return take the gridPattern Array that was just filled and returns it
+  */
 	public Color[] fillGameGrid(Color currentColor)
 	{
-		int counter = 0;
-		Color random = null;
-		setHotButtonColorAndNumber(this.hotButton, currentColor);
-		while(counter != 8)
+		int counter = 0; //So we know where we are in our loop, provides escape route.
+		Color random = null; //Initialization
+		setHotButtonColorAndNumber(this.hotButton, currentColor); //We have to put the hotButton and hotButton color in first, it is the most important.
+		while(counter != 8) //As long as the variable counter is not 8
 		{
-			random = randomColor();
-			if(!isSetColor(random) && !usedColors[counter])
+			random = randomColor(); //Generates a random Color and names it random
+			if(!isSetColor(random) && !usedColors[counter]) //If the color hasn't been put in the grid already and we have not yet made that color. Everything exepct for the hotButton should be false at this point in this array
 			{
-				gridPattern[counter] = random;
-				setUsedColors(random);
+				gridPattern[counter] = random; //At whatever index we are currently at, shove the random Color there
+				setUsedColors(random); //This changes the boolean array so the computer does not make this color again
 			}
-			counter++;
+			counter++; //Take whatever number counter is currently, then add one to that number
 		}
-		return gridPattern;
+		return gridPattern; //When the computer is done with the loop, the Array gridPattern \should contain no nulls, then this returns the Color Array
 	}
 
 	public void setHotButton(int hotButton)
@@ -218,12 +237,17 @@ public class Tiles
 	    this.hotButton = hotButton;
 	}
 
+/**
+ * This method can tell other methods if a tile is special or not
+ * @param The tile in question number
+ * @return wether or not this tile is the right tile that the player is supposed to press
+ */
 	public boolean isHotButton(int tileNumber)
 	{
-        	boolean returnValue = false;
-        	if(tileNumber == this.hotButton)
+        	boolean returnValue = false; //Make a default returnValue
+        	if(tileNumber == this.hotButton) //If the tile's number is the same as the intvairble hotButton that was set when the hotButton was randomly selected.
         	{
-        		returnValue = true;
+        		returnValue = true; //Than the tile in question is indeed the special tile
         	}
         	return returnValue;
     	}
