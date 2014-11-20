@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class GameScreen extends Activity
 {
@@ -29,7 +30,16 @@ public class GameScreen extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_screen);
 	
-		//TODO: INITALIZE BUTTONS
+		tile1 = (Button)findViewById(R.id.tile1);
+		tile2 = (Button)findViewById(R.id.tile2);
+		tile3 = (Button)findViewById(R.id.tile3);
+		tile4 = (Button)findViewById(R.id.tile4);
+		tile5 = (Button)findViewById(R.id.tile5);
+		tile6 = (Button)findViewById(R.id.tile6);
+		tile7 = (Button)findViewById(R.id.tile7);
+		tile8 = (Button)findViewById(R.id.tile8);
+		tile9 = (Button)findViewById(R.id.tile9);
+		//TODO Make and initalize other buttons menuButton
 		
 		playerColors = new ArrayList<Integer>();
 		playerScore = 0;
@@ -193,17 +203,19 @@ public class GameScreen extends Activity
 		resetGrid(); //Destroy the grid and make a new one
 		gameTile.setHotButton(specialTile); //Tell the new one what tile is special
 		gridPattern = gameTile.fillGameGrid(currentColor); //Have the Tiles class generate an Array of Colors that will be the layout of tile colors
-//		tile1.setColor(gridPattern[0]); //Set the colors of the tiles
-//		tile2.setColor(gridPattern[1]);
-//		tile3.setColor(gridPattern[2]);
-//		tile4.setColor(gridPattern[3]);
-//		tile5.setColor(gridPattern[4]);
-//		tile6.setColor(gridPattern[5]);
-//		tile7.setColor(gridPattern[6]);
-//		tile8.setColor(gridPattern[7]);
-//		tile9.setColor(gridPattern[8]);
+		tile1.setBackgroundColor(gridPattern[0]); //Set the colors of the tiles
+		tile2.setBackgroundColor(gridPattern[1]);
+		tile3.setBackgroundColor(gridPattern[2]);
+		tile4.setBackgroundColor(gridPattern[3]);
+		tile5.setBackgroundColor(gridPattern[4]);
+		tile6.setBackgroundColor(gridPattern[5]);
+		tile7.setBackgroundColor(gridPattern[6]);
+		tile8.setBackgroundColor(gridPattern[7]);
+		tile9.setBackgroundColor(gridPattern[8]);
 	}
 
+	
+	
 	private void calculateScore(long timeIn, long timeOut)
 	{
 		int returnValue = 0;
