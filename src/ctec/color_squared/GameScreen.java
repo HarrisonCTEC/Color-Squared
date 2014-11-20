@@ -36,8 +36,10 @@ public class GameScreen extends Activity
 		grue = Color.parseColor("#E6EA080");
 		blue = Color.parseColor("#E00A0C0");
 		purple = Color.parseColor("#6080C0");
+		reallyGreen = Color.parseColor("#00FF00");
+		reallyRed = Color.parseColor("#FF0000");
 		
-		//INITALIZE BUTTONS
+		//TODO: INITALIZE BUTTONS
 		
 		playerColors = new ArrayList<Color>();
 		playerScore = 0;
@@ -45,8 +47,8 @@ public class GameScreen extends Activity
 		playerProgress = 0;
 		displayPlayerColors();
 		displayPlayerProgress();
-		updateGrid();
-		startTime = System.currentTimeMillis();
+		updateGrid(0);
+		startTime = System.currentTimeMillis(); //By this point the player should be seeing a grid and the instructions on what to type, so the timer automatically beings
 	}
     
 	private void setupListners()
@@ -56,19 +58,7 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(1) && playerProgress !> 5)
-				{
-					playerCorrect();
-					endTime = System.currentTimeMillis();
-					calculateScore(startTime, endTime);
-					updateGrid();
-					updateScore();
-					startTime = System.currentTimeMillis();
-				}
-				else
-				{
-					endGame();
-				}
+				onTilePress(1);
 			}
 		});
 		tile2.setOnClickListener(new View.OnClickListener()
@@ -76,19 +66,7 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(2) && playerProgress !> 5)
-				{
-					playerCorrect();
-					endTime = System.currentTimeMillis();
-					calculateScore(startTime, endTime);
-					updateGrid();
-					updateScore();
-					startTime = System.currentTimeMillis();
-				}
-				else
-				{
-					endGame();
-				}
+				onTilePress(2);
 			}
 		});
 		tile3.setOnClickListener(new View.OnClickListener()
@@ -96,19 +74,7 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(3) && playerProgress !> 5)
-				{
-					playerCorrect();
-					endTime = System.currentTimeMillis();
-					calculateScore(startTime, endTime);
-					updateGrid();
-					updateScore();
-					startTime = System.currentTimeMillis();
-				}
-				else
-				{
-					endGame();
-				}
+				onTilePress(3);	
 			}
 		});
 		tile4.setOnClickListener(new View.OnClickListener()
@@ -116,19 +82,7 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(4) && playerProgress !> 5)
-				{
-					playerCorrect();
-					endTime = System.currentTimeMillis();
-					calculateScore(startTime, endTime);
-					updateGrid();
-					updateScore();
-					startTime = System.currentTimeMillis();
-				}
-				else
-				{
-					endGame();
-				}
+				onTilePress(4);
 			}
 		});
 		tile5.setOnClickListener(new View.OnClickListener()
@@ -136,19 +90,7 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(5) && playerProgress !> 5)
-				{
-					playerCorrect();
-					endTime = System.currentTimeMillis();
-					calculateScore(startTime, endTime);
-					updateGrid();
-					updateScore();
-					startTime = System.currentTimeMillis();
-				}
-				else
-				{
-					endGame();
-				}
+				onTilePress(5);
 			}
 		});
 		tile6.setOnClickListener(new View.OnClickListener()
@@ -156,19 +98,7 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(6) && playerProgress !> 5)
-				{
-					playerCorrect();
-					endTime = System.currentTimeMillis();
-					calculateScore(startTime, endTime);
-					updateGrid();
-					updateScore();
-					startTime = System.currentTimeMillis();
-				}
-				else
-				{
-					endGame();
-				}
+				onTilePress(6);
 			}
 		});
 		tile7.setOnClickListener(new View.OnClickListener()
@@ -176,19 +106,7 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(7) && playerProgress !> 5)
-				{
-					playerCorrect();
-					endTime = System.currentTimeMillis();
-					calculateScore(startTime, endTime);
-					updateGrid();
-					updateScore();
-					startTime = System.currentTimeMillis();
-				}
-				else
-				{
-					endGame();
-				}
+				onTilePress(7);
 			}
 		});
 		tile8.setOnClickListener(new View.OnClickListener()
@@ -196,19 +114,7 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(8) && playerProgress !> 5)
-				{
-					playerCorrect();
-					endTime = System.currentTimeMillis();
-					calculateScore(startTime, endTime);
-					updateGrid();
-					updateScore();
-					startTime = System.currentTimeMillis();
-				}
-				else
-				{
-					endGame();
-				}
+				onTilePress(8);
 			}
 		});
 		tile9.setOnClickListener(new View.OnClickListener()
@@ -216,32 +122,43 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(9) && playerProgress !> 5)
-				{
-					playerCorrect();
-					endTime = System.currentTimeMillis();
-					calculateScore(startTime, endTime);
-					updateGrid();
-					updateScore();
-					startTime = System.currentTimeMillis();
-				}
-				else
-				{
-					endGame();
-				}
+				onTilePress(9);
 			}
 		});
 	}
+
+/**
+ * Whenever a tile is pressed this checks to see if it is the hotButton or not as well as starting and stoping the clock,
+ * If the player clicks a tile and it is not the hotbutton or there are no more instructions left, the game is over
+ * @param tileNumber the tile that is being pressed
+ */
+	private void onTilePress(int tileNumber)
+	{
+		if(gameTile.isHotbutton(tileNumber) && playerProgress !> 5) //If the player taped the special button and they are not done with the instructions,
+		{
+			endTime = System.currentTimeMillis();
+			calculateScore(startTime, endTime);
+			playerProgress++;
+			updateGrid(playerProgress);
+			updateScore();
+			startTime = System.currentTimeMillis()
+		}
+		else
+		{
+			endGame(); //Open up a new screen and pass the score to the new screen
+		}
+	}
 	
-	
-	
+/**
+ * Destroyes the Tiles object than recreates it, this insures a clean playing gird
+ */
 	private void resetGrid()
 	{
-		if(gameTile == null)
+		if(gameTile == null) //If tiles is a tiles shaped hole in the universe, or if it has not been created yet, make it
 		{
 			gameTile = new Tiles();	
 		}
-		else
+		else //But if it aldready exits, destroy it and make a new one
 		{
 			gameTile = null;
 			gameTile = new Tiles();
@@ -249,25 +166,31 @@ public class GameScreen extends Activity
 		
 	}
 
+/**
+ * Creates the players instructions on what to tap
+ */
 	private void levelGenerator()
 	{
-		int randomNumber = (int)Math.ceil(Math.random()*9);
-		int counter = 0;
-		while(counter != 6)
+		int counter = 0; //This is the escape route out of the while loop
+		while(counter != 6) // Do six times
 		{
-			playerColors.add(gameTile.randomColor());
-			counter++());
+			playerColors.add(gameTile.randomColor()); //Add the the Array List playColors 6 random Colors
+			counter++; //Take counter and add 1
 		}
 	}
 
-	private updateGrid(Color currentColor, int playerProgress)
+/**
+ * Randomly assings colors hotButton, hotColor, and all other tile colors than sets the tiles to those colors
+ * @param whereIsPlay the index in the Array List of playerProgress
+ */
+	private void updateGrid(int whereIsPlayer) //I'm eating cake right now at 2:35 AM ... it tastes good!
 	{
-		int specialTile = (int) Math.ceil(Math.random() * 9);
-		Color currentColor = (Color) playerColors.get(playerProgress);
-		resetGrid();
-		gameTile.setHotButton(specialTile);
-		gridPattern = gameTile.fillGameGrid(currentColor);
-		tile1.setColor(gridPattern[0]);
+		int specialTile = (int) Math.ceil(Math.random() * 9); //Generate a random number between one and nine and name it specialTile
+		Color currentColor = (Color) playerColors.get(whereIsPlayer); //From the instructions, based on the index gett from that list the stored Color and name it currentColor
+		resetGrid(); //Destroy the grid and make a new one
+		gameTile.setHotButton(specialTile); //Tell the new one what tile is special
+		gridPattern = gameTile.fillGameGrid(currentColor); //Have the Tiles class generate an Array of Colors that will be the layout of tile colors
+		tile1.setColor(gridPattern[0]); //Set the colors of the tiles
 		tile2.setColor(gridPattern[1]);
 		tile3.setColor(gridPattern[2]);
 		tile4.setColor(gridPattern[3]);
@@ -281,7 +204,8 @@ public class GameScreen extends Activity
 	private void calculateScore(/*Start time*/, /*End Time*/)
 	{
 		int returnValue = 0;
+		long timeInterval = endTime - startTime;
 		//SOME MATH TO DETERMINE SCORE = returnValue
-		playerSCore =+ returnValue;
+		playerScore += returnValue; //MUST BE AN INTERGER!
 	}
 }
