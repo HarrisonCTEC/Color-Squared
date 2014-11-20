@@ -141,10 +141,9 @@ public class GameScreen extends Activity
 		{
 			endTime = System.currentTimeMillis();
 			calculateScore(startTime, endTime);
-			playerProgress++;
+			updatePlayerProgress();
 			updateGrid(playerProgress);
 			//updateScore();
-			updatePlayerProgress();
 			startTime = System.currentTimeMillis();
 		}
 		else
@@ -190,7 +189,7 @@ public class GameScreen extends Activity
 	private void updateGrid(int whereIsPlayer) //I'm eating cake right now at 2:35 AM ... it tastes good!
 	{
 		int specialTile = (int) Math.ceil(Math.random() * 9); //Generate a random number between one and nine and name it specialTile
-		int currentColor = playerColors.get(whereIsPlayer); //From the instructions, based on the index gett from that list the stored Color and name it currentColor
+		int currentColor = playerColors.get(whereIsPlayer); //From the instructions, based on the index get from that list the stored Color and name it currentColor
 		resetGrid(); //Destroy the grid and make a new one
 		gameTile.setHotButton(specialTile); //Tell the new one what tile is special
 		gridPattern = gameTile.fillGameGrid(currentColor); //Have the Tiles class generate an Array of Colors that will be the layout of tile colors
@@ -234,6 +233,7 @@ public class GameScreen extends Activity
 	 */
 	private void updatePlayerProgress()
 	{
+		playerProgress++; //Don't change this!
 		//TODO
 	}
 }
