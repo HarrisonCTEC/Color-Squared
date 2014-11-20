@@ -18,15 +18,15 @@ public class Tiles
 	public Tiles()
 	{
 	        this.hotButton = 0;
-	        pink = Color.parseColor("#E0A0C0"); //This converts from a hex string into a Color int
-	        magenta = Color.parseColor("#E04080");
-	        red = Color.parseColor("#E04040");
-	        yellow = Color.parseColor("#C08000");
-	        orange = Color.parseColor("#E06040");
-	        green = Color.parseColor("#C0E000");
-	        grue = Color.parseColor("#E6EA080");
-	        blue = Color.parseColor("#E00A0C0");
-	        purple = Color.parseColor("#6080C0");
+	        this.pink = Color.parseColor("#E0A0C0"); //This converts from a hex string into a Color int
+	        this.magenta = Color.parseColor("#E04080");
+	        this.red = Color.parseColor("#E04040");
+	        this.yellow = Color.parseColor("#C08000");
+	        this.orange = Color.parseColor("#E06040");
+	        this.green = Color.parseColor("#C0E000");
+	        this.grue = Color.parseColor("#E6EA080");
+	        this.blue = Color.parseColor("#E00A0C0");
+	        this.purple = Color.parseColor("#6080C0");
 	}
  
  /**
