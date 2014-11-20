@@ -45,9 +45,7 @@ public class GameScreen extends Activity
 		playerProgress = 0;
 		displayPlayerColors();
 		displayPlayerProgress();
-		resetGrid();
-		displayGrid();
-		displayScore();
+		updateGrid();
 		startTime = System.currentTimeMillis();
 	}
     
@@ -63,6 +61,8 @@ public class GameScreen extends Activity
 					playerCorrect();
 					endTime = System.currentTimeMillis();
 					calculateScore(startTime, endTime);
+					updateGrid();
+					updateScore();
 					startTime = System.currentTimeMillis();
 				}
 				else
@@ -76,11 +76,13 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(1) && playerProgress !> 5)
+				if(gameTile.isHotbutton(2) && playerProgress !> 5)
 				{
 					playerCorrect();
 					endTime = System.currentTimeMillis();
 					calculateScore(startTime, endTime);
+					updateGrid();
+					updateScore();
 					startTime = System.currentTimeMillis();
 				}
 				else
@@ -94,11 +96,13 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(1) && playerProgress !> 5)
+				if(gameTile.isHotbutton(3) && playerProgress !> 5)
 				{
 					playerCorrect();
 					endTime = System.currentTimeMillis();
 					calculateScore(startTime, endTime);
+					updateGrid();
+					updateScore();
 					startTime = System.currentTimeMillis();
 				}
 				else
@@ -112,11 +116,13 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(1) && playerProgress !> 5)
+				if(gameTile.isHotbutton(4) && playerProgress !> 5)
 				{
 					playerCorrect();
 					endTime = System.currentTimeMillis();
 					calculateScore(startTime, endTime);
+					updateGrid();
+					updateScore();
 					startTime = System.currentTimeMillis();
 				}
 				else
@@ -130,11 +136,13 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(1) && playerProgress !> 5)
+				if(gameTile.isHotbutton(5) && playerProgress !> 5)
 				{
 					playerCorrect();
 					endTime = System.currentTimeMillis();
 					calculateScore(startTime, endTime);
+					updateGrid();
+					updateScore();
 					startTime = System.currentTimeMillis();
 				}
 				else
@@ -148,11 +156,13 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(1) && playerProgress !> 5)
+				if(gameTile.isHotbutton(6) && playerProgress !> 5)
 				{
 					playerCorrect();
 					endTime = System.currentTimeMillis();
 					calculateScore(startTime, endTime);
+					updateGrid();
+					updateScore();
 					startTime = System.currentTimeMillis();
 				}
 				else
@@ -166,11 +176,13 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(1) && playerProgress !> 5)
+				if(gameTile.isHotbutton(7) && playerProgress !> 5)
 				{
 					playerCorrect();
 					endTime = System.currentTimeMillis();
 					calculateScore(startTime, endTime);
+					updateGrid();
+					updateScore();
 					startTime = System.currentTimeMillis();
 				}
 				else
@@ -184,11 +196,13 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(1) && playerProgress !> 5)
+				if(gameTile.isHotbutton(8) && playerProgress !> 5)
 				{
 					playerCorrect();
 					endTime = System.currentTimeMillis();
 					calculateScore(startTime, endTime);
+					updateGrid();
+					updateScore();
 					startTime = System.currentTimeMillis();
 				}
 				else
@@ -202,11 +216,13 @@ public class GameScreen extends Activity
 			@Override
 			public void onClick(View currentView)
 			{
-				if(gameTile.isHotbutton(1) && playerProgress !> 5)
+				if(gameTile.isHotbutton(9) && playerProgress !> 5)
 				{
 					playerCorrect();
 					endTime = System.currentTimeMillis();
 					calculateScore(startTime, endTime);
+					updateGrid();
+					updateScore();
 					startTime = System.currentTimeMillis();
 				}
 				else
@@ -217,9 +233,20 @@ public class GameScreen extends Activity
 		});
 	}
 	
+	
+	
 	private void resetGrid()
 	{
-		gameTile = new Tiles();
+		if(gameTile == null)
+		{
+			gameTile = new Tiles();	
+		}
+		else
+		{
+			gameTile = null;
+			gameTile = new Tiles();
+		}
+		
 	}
 
 	private void levelGenerator()
@@ -240,6 +267,15 @@ public class GameScreen extends Activity
 		resetGrid();
 		gameTile.setHotButton(specialTile);
 		gridPattern = gameTile.fillGameGrid(currentColor);
+		tile1.setColor(gridPattern[0]);
+		tile2.setColor(gridPattern[1]);
+		tile3.setColor(gridPattern[2]);
+		tile4.setColor(gridPattern[3]);
+		tile5.setColor(gridPattern[4]);
+		tile6.setColor(gridPattern[5]);
+		tile7.setColor(gridPattern[6]);
+		tile8.setColor(gridPattern[7]);
+		tile9.setColor(gridPattern[8]);
 	}
 
 	private void calculateScore(/*Start time*/, /*End Time*/)
