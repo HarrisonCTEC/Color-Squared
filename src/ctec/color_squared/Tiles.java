@@ -4,39 +4,33 @@ import android.graphics.Color;
 
 public class Tiles
 {
-	private Color[] gridPattern = new Color[8];
+	private int[] gridPattern = new int[8];
 	private boolean[] usedColors = new boolean[8];
-	private Color pink, magenta, red, yellow, orange, green, grue, blue, purple;
+	private int pink, magenta, red, yellow, orange, green, grue, blue, purple;
+    private int hotButton;
 
-	pink = Color.parseColor("#E0A0C0"); //This converts from a hex string into a Color int
-        magenta = Color.parseColor("#E04080");
-        red = Color.parseColor("#E04040");
-        yellow = Color.parseColor("#C08000");
-        orange = Color.parseColor("#E06040");
-        green = Color.parseColor("#C0E000");
-        grue = Color.parseColor("#E6EA080");
-        blue = Color.parseColor("#E00A0C0");
-        purple = Color.parseColor("#6080C0");
-	
-
-/**
-* 1-9 represents tiles, 0 represents unset
-*/
-    	private int hotButton;
-
-	public void tiles()
+	public Tiles()
 	{
 	        this.hotButton = 0;
+	        pink = Color.parseColor("#E0A0C0"); //This converts from a hex string into a Color int
+	        magenta = Color.parseColor("#E04080");
+	        red = Color.parseColor("#E04040");
+	        yellow = Color.parseColor("#C08000");
+	        orange = Color.parseColor("#E06040");
+	        green = Color.parseColor("#C0E000");
+	        grue = Color.parseColor("#E6EA080");
+	        blue = Color.parseColor("#E00A0C0");
+	        purple = Color.parseColor("#6080C0");
 	}
  
  /**
   * Returns one of the nine colors randomly when called
   * @return the randomly selected Color
   */
- 	public Color randomColor()
+ 	public int randomColor()
  	{
  		int randomNumber = (int)Math.ceil(Math.random()*9); //Generate a number between 1 and 9
- 		Color returnValue = null; //Set a default return value
+ 		int returnValue = 0; //Set a default return value
  		if(randomNumber == 1) //If that randomly generated number is 1
  		{
  			returnValue = pink; //Make the return value pink
@@ -82,7 +76,7 @@ public class Tiles
 * @param someColor the Color that we are questioning if it has been used aldready or not.
 * @return If the color has aldready been placed in the array, true
 */
- 	private boolean isSetColor(Color someColor)
+ 	private boolean isSetColor(int someColor)
  	{
  		boolean returnValue = false; //Make a default returnValue
  		
@@ -157,9 +151,9 @@ public class Tiles
  * When a color is being used, this method updates the boolean array
  * Every color that the game uses has a number assoisated to it, but is not ever formely used in code
  */
- 	private void setUsedColors(Color currentColor)
+ 	private void setUsedColors(int currentColor)
  	{
- 		if(cuurentColor == pink)
+ 		if(currentColor == pink)
  		{
  			usedColors[0] = true;
  		}
@@ -203,7 +197,7 @@ public class Tiles
   * @param hotButton the int that was randomly created at the game screen activity
   * @param currentColor the color of the hotButton
   */
- 	private void setHotButtonColorAndNumber(int hotButton, Color currentColor)
+ 	private void setHotButtonColorAndNumber(int hotButton, int currentColor)
  	{
  		gridPattern[hotButton] = currentColor; //Take the current color that the player should find at this poijnt and shove it inside the gridPattern Array at the index coresponding with the tile's number
 		setUsedColors(currentColor); //Change the boolean Array so we don't randomly generate this nnumber again.
@@ -214,10 +208,10 @@ public class Tiles
   * @param currentColor the color we are currently at so we know not to generate it, it is also the color of the hotButton
   * @return take the gridPattern Array that was just filled and returns it
   */
-	public Color[] fillGameGrid(Color currentColor)
+	public int[] fillGameGrid(int currentColor)
 	{
 		int counter = 0; //So we know where we are in our loop, provides escape route.
-		Color random = null; //Initialization
+		int random = 0; //Initialization
 		setHotButtonColorAndNumber(this.hotButton, currentColor); //We have to put the hotButton and hotButton color in first, it is the most important.
 		while(counter != 8) //As long as the variable counter is not 8
 		{

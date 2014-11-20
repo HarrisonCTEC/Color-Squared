@@ -6,17 +6,18 @@ import java.util.List;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class GameScreen extends Activity
 {
 	private Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9;
-	private List<Color> playerColors;
+	private ArrayList<Integer> playerColors;
 	private int playerProgress;
 	private Tiles gameTile;
-	private Color pink, magenta, red, yellow, orange, green, grue, purple;
-	private Color[] gridPattern = new Color[8];
+	private int pink, magenta, red, yellow, orange, green, grue, blue, purple, reallyRed, reallyGreen; //For some reason these are ints?
+	private int[] gridPattern = new int[8];
 	private int playerScore;
 	private long startTime;
 	private long endTime;
@@ -41,13 +42,14 @@ public class GameScreen extends Activity
 		
 		//TODO: INITALIZE BUTTONS
 		
-		playerColors = new ArrayList<Color>();
+		playerColors = new ArrayList<Integer>();
 		playerScore = 0;
 		levelGenerator();
 		playerProgress = 0;
-		displayPlayerColors();
-		displayPlayerProgress();
+		//displayPlayerColors();
+		//displayPlayerProgress();
 		updateGrid(0);
+		setupListners();
 		startTime = System.currentTimeMillis(); //By this point the player should be seeing a grid and the instructions on what to type, so the timer automatically beings
 	}
     
@@ -134,18 +136,18 @@ public class GameScreen extends Activity
  */
 	private void onTilePress(int tileNumber)
 	{
-		if(gameTile.isHotbutton(tileNumber) && playerProgress !> 5) //If the player taped the special button and they are not done with the instructions,
+		if(gameTile.isHotButton(tileNumber) && (playerProgress <= 5)) //If the player taped the special button and they are not done with the instructions,
 		{
 			endTime = System.currentTimeMillis();
 			calculateScore(startTime, endTime);
 			playerProgress++;
 			updateGrid(playerProgress);
-			updateScore();
-			startTime = System.currentTimeMillis()
+			//updateScore();
+			startTime = System.currentTimeMillis();
 		}
 		else
 		{
-			endGame(); //Open up a new screen and pass the score to the new screen
+				endGame();
 		}
 	}
 	
@@ -186,26 +188,34 @@ public class GameScreen extends Activity
 	private void updateGrid(int whereIsPlayer) //I'm eating cake right now at 2:35 AM ... it tastes good!
 	{
 		int specialTile = (int) Math.ceil(Math.random() * 9); //Generate a random number between one and nine and name it specialTile
-		Color currentColor = (Color) playerColors.get(whereIsPlayer); //From the instructions, based on the index gett from that list the stored Color and name it currentColor
+		int currentColor = playerColors.get(whereIsPlayer); //From the instructions, based on the index gett from that list the stored Color and name it currentColor
 		resetGrid(); //Destroy the grid and make a new one
 		gameTile.setHotButton(specialTile); //Tell the new one what tile is special
 		gridPattern = gameTile.fillGameGrid(currentColor); //Have the Tiles class generate an Array of Colors that will be the layout of tile colors
-		tile1.setColor(gridPattern[0]); //Set the colors of the tiles
-		tile2.setColor(gridPattern[1]);
-		tile3.setColor(gridPattern[2]);
-		tile4.setColor(gridPattern[3]);
-		tile5.setColor(gridPattern[4]);
-		tile6.setColor(gridPattern[5]);
-		tile7.setColor(gridPattern[6]);
-		tile8.setColor(gridPattern[7]);
-		tile9.setColor(gridPattern[8]);
+//		tile1.setColor(gridPattern[0]); //Set the colors of the tiles
+//		tile2.setColor(gridPattern[1]);
+//		tile3.setColor(gridPattern[2]);
+//		tile4.setColor(gridPattern[3]);
+//		tile5.setColor(gridPattern[4]);
+//		tile6.setColor(gridPattern[5]);
+//		tile7.setColor(gridPattern[6]);
+//		tile8.setColor(gridPattern[7]);
+//		tile9.setColor(gridPattern[8]);
 	}
 
-	private void calculateScore(/*Start time*/, /*End Time*/)
+	private void calculateScore(long timeIn, long timeOut)
 	{
 		int returnValue = 0;
-		long timeInterval = endTime - startTime;
+		long timeInterval = (endTime - startTime);
 		//SOME MATH TO DETERMINE SCORE = returnValue
 		playerScore += returnValue; //MUST BE AN INTERGER!
+	}
+	
+	/**
+	 * Opens up the final activity and passes the players score there
+	 */
+	private void endGame()
+	{
+		//TODO
 	}
 }
