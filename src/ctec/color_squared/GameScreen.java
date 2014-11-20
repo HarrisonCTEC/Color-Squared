@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class GameScreen extends Activity
 {
@@ -23,6 +24,7 @@ public class GameScreen extends Activity
 	private int playerScore;
 	private long startTime;
 	private long endTime;
+	private TextView scoreDisplay;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -39,6 +41,7 @@ public class GameScreen extends Activity
 		tile7 = (Button)findViewById(R.id.tile7);
 		tile8 = (Button)findViewById(R.id.tile8);
 		tile9 = (Button)findViewById(R.id.tile9);
+		scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
 		//TODO Make and initalize other buttons menuButton
 		
 		playerColors = new ArrayList<Integer>();
@@ -150,10 +153,9 @@ public class GameScreen extends Activity
 		if(gameTile.isHotButton(tileNumber) && (playerProgress <= 5)) //If the player taped the special button and they are not done with the instructions,
 		{
 			endTime = System.currentTimeMillis();
-			calculateScore(startTime, endTime);
+			updateScore(startTime, endTime);
 			updatePlayerProgress();
 			updateGrid(playerProgress);
-			//updateScore();
 			startTime = System.currentTimeMillis();
 		}
 		else
@@ -216,12 +218,13 @@ public class GameScreen extends Activity
 
 	
 	
-	private void calculateScore(long timeIn, long timeOut)
+	private void updateScore(long timeIn, long timeOut)
 	{
 		int returnValue = 0;
 		long timeInterval = (endTime - startTime);
 		//SOME MATH TO DETERMINE SCORE = returnValue TODO
 		playerScore += returnValue; //MUST BE AN INTERGER!
+		scoreDisplay.setText(playerScore);
 	}
 	
 	/**
