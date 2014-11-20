@@ -16,7 +16,8 @@ public class GameScreen extends Activity
 	private ArrayList<Integer> playerColors;
 	private int playerProgress;
 	private Tiles gameTile;
-	private int pink, magenta, red, yellow, orange, green, grue, blue, purple, reallyRed, reallyGreen; //For some reason these are ints?
+//	private int pink, magenta, red, yellow, orange, green, grue, blue, purple;
+	private int reallyRed, reallyGreen; //For some reason these are ints?
 	private int[] gridPattern = new int[8];
 	private int playerScore;
 	private long startTime;
@@ -27,30 +28,30 @@ public class GameScreen extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_screen);
-		
-		pink = Color.parseColor("#E0A0C0");
-		magenta = Color.parseColor("#E04080");
-		red = Color.parseColor("#E04040");
-		yellow = Color.parseColor("#C08000");
-		orange = Color.parseColor("#E06040");
-		green = Color.parseColor("#C0E000");
-		grue = Color.parseColor("#E6EA080");
-		blue = Color.parseColor("#E00A0C0");
-		purple = Color.parseColor("#6080C0");
-		reallyGreen = Color.parseColor("#00FF00");
-		reallyRed = Color.parseColor("#FF0000");
-		
+	
 		//TODO: INITALIZE BUTTONS
 		
 		playerColors = new ArrayList<Integer>();
 		playerScore = 0;
 		levelGenerator();
 		playerProgress = 0;
-		//displayPlayerColors();
-		//displayPlayerProgress();
+		displayPlayerColors();
+		updatePlayerProgress();
 		updateGrid(0);
 		setupListners();
 		startTime = System.currentTimeMillis(); //By this point the player should be seeing a grid and the instructions on what to type, so the timer automatically beings
+		
+//		pink = gameTile.getPink();
+//		magenta = gameTile.getMagenta();
+//		red = gameTile.getRed();
+//		yellow = gameTile.getYellow();
+//		orange = gameTile.getOrange();
+//		green = gameTile.getGreen();
+//		grue = gameTile.getGrue();
+//		blue = gameTile.getBlue();
+//		purple = gameTile.getPurple();
+		reallyGreen = Color.parseColor("#00FF00");
+		reallyRed = Color.parseColor("#FF0000");	
 	}
     
 	private void setupListners()
@@ -143,6 +144,7 @@ public class GameScreen extends Activity
 			playerProgress++;
 			updateGrid(playerProgress);
 			//updateScore();
+			updatePlayerProgress();
 			startTime = System.currentTimeMillis();
 		}
 		else
@@ -207,7 +209,7 @@ public class GameScreen extends Activity
 	{
 		int returnValue = 0;
 		long timeInterval = (endTime - startTime);
-		//SOME MATH TO DETERMINE SCORE = returnValue
+		//SOME MATH TO DETERMINE SCORE = returnValue TODO
 		playerScore += returnValue; //MUST BE AN INTERGER!
 	}
 	
@@ -215,6 +217,22 @@ public class GameScreen extends Activity
 	 * Opens up the final activity and passes the players score there
 	 */
 	private void endGame()
+	{
+		//TODO
+	}
+	
+	/**
+	 * Fills the instruction box with the playColors list
+	 */
+	private void displayPlayerColors()
+	{
+		//TODO
+	}
+	
+	/**
+	 * Changes the color of the outline of the boxes of the instructions from red to green when the player progreses
+	 */
+	private void updatePlayerProgress()
 	{
 		//TODO
 	}
