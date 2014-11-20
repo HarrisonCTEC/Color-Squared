@@ -2,6 +2,12 @@ package ctec.color_squared;
 
 import android.graphics.Color;
 
+/**
+ * Tiles object
+ * @contains Game colors, Tile states and hotButton
+ * @author Harrison H, Mark S
+ * ©2014 Orange Lightning Research
+ */
 public class Tiles
 {
 	private int[] gridPattern = new int[8];
