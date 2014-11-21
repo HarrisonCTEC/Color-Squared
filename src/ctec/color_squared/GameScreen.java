@@ -78,7 +78,7 @@ public class GameScreen extends Activity
 	
 	private void randomizeGrid(int ignoreColor, int hotButton)
 	{
-		tile1.setBackgroundColor(getResources().getColor(R.color.solRed));
+		tile1.setBackgroundColor(genIgnoreColor(ignoreColor));
 		tile2.setBackgroundColor(genIgnoreColor(ignoreColor));
 		tile3.setBackgroundColor(genIgnoreColor(ignoreColor));
 		tile4.setBackgroundColor(genIgnoreColor(ignoreColor));
