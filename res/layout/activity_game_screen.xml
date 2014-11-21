@@ -1,14 +1,59 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/TableLayout1"
+    android:id="@+id/GameScreenLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center|top"
     android:background="@color/solBase3"
     android:gravity="center"
-    android:layout_gravity="center"
     tools:context="${relativePackage}.${activityClass}" >
 
-	<TableRow>
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="false"
+        android:gravity="top|center" >
+
+        <Button
+            android:id="@+id/Color1"
+            style="@style/gameButton"
+            android:clickable="false"
+            android:focusable="false" />
+
+        <Button
+            android:id="@+id/Color2"
+            style="@style/gameButton"
+            android:clickable="false"
+            android:focusable="false" />
+
+        <Button
+            android:id="@+id/Color3"
+            style="@style/gameButton"
+            android:clickable="false"
+            android:focusable="false" />
+
+        <Button
+            android:id="@+id/Color4"
+            style="@style/gameButton"
+            android:clickable="false"
+            android:focusable="false" />
+
+        <Button
+            android:id="@+id/Color5"
+            style="@style/gameButton"
+            android:clickable="false"
+            android:focusable="false" />
+
+        <Button
+            android:id="@+id/Color6"
+            style="@style/gameButton"
+            android:clickable="false"
+            android:focusable="false" />
+    </TableRow>
+
+	<TableRow android:gravity="center" >
+
     <Button
         android:id="@+id/tile1"
         style="@style/gameButton" />
@@ -22,7 +67,8 @@
         style="@style/gameButton" />
 	</TableRow>
 
-	<TableRow>
+	<TableRow android:gravity="center" >
+
     <Button
         android:id="@+id/tile4"
         style="@style/gameButton" />
@@ -36,7 +82,8 @@
         style="@style/gameButton" />
     </TableRow>
 
-	<TableRow>
+	<TableRow android:gravity="center" >
+
     <Button
         android:id="@+id/tile7"
         style="@style/gameButton" />
@@ -48,6 +95,7 @@
     <Button
         android:id="@+id/tile9"
         style="@style/gameButton" />
+
 	</TableRow>
 
 	<TextView

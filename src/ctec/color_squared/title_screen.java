@@ -6,34 +6,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class title_screen extends Activity
-{
+public class title_screen extends Activity {
 	private Button startButton;
-	
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        
-        startButton = (Button) findViewById(R.id.startButton);
-        
-        setupListeners();
-    }
-    
-    private void setupListeners()
-    {
-    	startButton.setOnClickListener(new View.OnClickListener()
-		{
-			
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		startButton = (Button) findViewById(R.id.startButton);
+
+		setupListeners();
+	}
+
+	private void setupListeners() {
+		startButton.setOnClickListener(new View.OnClickListener() {
+
 			@Override
-			public void onClick(View v)
-			{
-				Intent transferIntent = new Intent(v.getContext(), GameScreen.class);
+			public void onClick(View v) {
+
+				Intent transferIntent = new Intent(title_screen.this, GameScreen.class);
 				startActivityForResult(transferIntent, 0);
-				
+
 			}
 		});
-    }
+	}
 }
