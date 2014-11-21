@@ -1,7 +1,9 @@
 package ctec.color_squared;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import android.app.Activity;
@@ -24,18 +26,21 @@ public class GameScreen extends Activity
 	private ArrayList<Integer> playerColors;
 	private int playerProgress;
 	private Tiles gameTile;
-//	private int pink, magenta, red, yellow, orange, green, grue, blue, purple;
+	//private int pink, magenta, red, yellow, orange, green, grue, blue, purple;
 	private int reallyRed, reallyGreen; //For some reason these are ints?
 	private int[] gridPattern = new int[8];
 	private int playerScore;
 	private TextView scoreDisplay;
+	
+	private int [] colorOrder = {R.color.solRed, R.color.solOrange, R.color.solYellow, R.color.solGreen, R.color.solBlue, R.color.solViolet};
+	private int score;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_screen);
-	
+		
 		tile1 = (Button)findViewById(R.id.tile1);
 		tile2 = (Button)findViewById(R.id.tile2);
 		tile3 = (Button)findViewById(R.id.tile3);
@@ -48,16 +53,58 @@ public class GameScreen extends Activity
 		scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
 		//TODO Make and initalize other buttons menuButton
 		
+		
 		playerColors = new ArrayList<Integer>();
+		score = 0;
 		playerScore = 0;
-		levelGenerator();
+		//levelGenerator();
 		playerProgress = 0;
-		displayPlayerColors();
-		updatePlayerProgress();
-		updateGrid(0);
-		setupListners();
+		//displayPlayerColors();
+		//updatePlayerProgress();
+		//updateGrid(0);
+		//setupListners();
 		reallyGreen = Color.parseColor("#00FF00");
 		reallyRed = Color.parseColor("#FF0000");	
+		
+		genTurn(score);
+	}
+	
+	private void genTurn(int score)
+	{
+		int hotButton = (int)(Math.random() * 8);
+		int ignoreColor = (int)(Math.random() * 5);
+		randomizeGrid(ignoreColor, hotButton);
+	}
+	
+	private void randomizeGrid(int ignoreColor, int hotButton)
+	{
+		tile1.setBackgroundColor(getResources().getColor(R.color.solRed));
+		tile2.setBackgroundColor(genIgnoreColor(ignoreColor));
+		tile3.setBackgroundColor(genIgnoreColor(ignoreColor));
+		tile4.setBackgroundColor(genIgnoreColor(ignoreColor));
+		tile5.setBackgroundColor(genIgnoreColor(ignoreColor));
+		tile6.setBackgroundColor(genIgnoreColor(ignoreColor));
+		tile7.setBackgroundColor(genIgnoreColor(ignoreColor));
+		tile8.setBackgroundColor(genIgnoreColor(ignoreColor));
+		tile9.setBackgroundColor(genIgnoreColor(ignoreColor));
+	}
+	
+	private int genIgnoreColor(int ignore)
+	{
+		//List<Integer> colors = new LinkedList(Arrays.asList(colorOrder));
+		Arrays.asList(colorOrder);
+		List<Integer> colors = new ArrayList<Integer>();
+		for(int i = 0; i < colorOrder.length; i++)
+			if (i != ignore)
+			{
+				colors.add(i);
+			}
+		System.out.println(colorOrder.length);
+		System.out.println(ignore);
+		System.out.println(colors.size());
+		int rand = (int)(Math.random() * 5);
+		return (Integer) colors.get(rand);
+		
 	}
     
 	private void setupListners()
