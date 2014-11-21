@@ -104,7 +104,7 @@ public class GameScreen extends Activity {
 		playerProgress = 0;
 		displayPlayerColors();
 		updatePlayerProgress();
-		updateGrid(0);
+		updateGrid1(0);
 		setupListners();
 		reallyGreen = Color.parseColor("#00FF00");
 		reallyRed = Color.parseColor("#FF0000");	
@@ -195,7 +195,7 @@ public class GameScreen extends Activity {
 		{
 			playerScore++;
 			updatePlayerProgress();
-			updateGrid(playerProgress);
+			updateGrid1(playerProgress);
 
 			startTime = System.currentTimeMillis();
 		}
@@ -215,14 +215,14 @@ public class GameScreen extends Activity {
 		{
 			gameTile = new Tiles();
 		}
-		else // But if it aldready exits, destroy it and make a new one
+		else // But if it already exits, destroy it and make a new one
 
 		}
 		else if(gameTile.isHotButton(tileNumber) && (playerProgress == 6))
 		{
 			playerScore++;
 			updatePlayerProgress();
-			updateGrid(playerProgress);
+			updateGrid1(playerProgress);
 			nextLevel();
 		}
 		else
@@ -239,7 +239,8 @@ public class GameScreen extends Activity {
 	/**
 	 * Creates the players instructions on what to tap
 	 */
-	private void levelGenerator() {
+	private void levelGenerator()
+	{
 		int counter = 0; // This is the escape route out of the while loop
 		while (counter != 6) // Do six times
 		{
@@ -258,7 +259,7 @@ public class GameScreen extends Activity {
 	 * @param whereIsPlay
 	 *            the index in the Array List of playerProgress
 	 */
-	private void updateGrid(int whereIsPlayer) // I'm eating cake right now at
+	private void updateGrid1(int whereIsPlayer) // I'm eating cake right now at
 												// 2:35 AM ... it tastes good!
 	{
 		int specialTile = (int) Math.ceil(Math.random() * 9); // Generate a
@@ -285,7 +286,7 @@ public class GameScreen extends Activity {
 															// layout of tile
 															// colors
 		tile1.setBackgroundColor(gridPattern[0]); // Set the colors of the tiles
-
+	}
 /**
  * Randomly assings colors hotButton, hotColor, and all other tile colors than sets the tiles to those colors
  * @param whereIsPlayer the index in the Array List of playerProgress
