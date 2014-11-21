@@ -28,8 +28,6 @@ public class GameScreen extends Activity
 	private int reallyRed, reallyGreen; //For some reason these are ints?
 	private int[] gridPattern = new int[8];
 	private int playerScore;
-	private long startTime;
-	private long endTime;
 	private TextView scoreDisplay;
 
 	@Override
@@ -58,17 +56,6 @@ public class GameScreen extends Activity
 		updatePlayerProgress();
 		updateGrid(0);
 		setupListners();
-		startTime = System.currentTimeMillis(); //By this point the player should be seeing a grid and the instructions on what to type, so the timer automatically beings
-		
-//		pink = gameTile.getPink();
-//		magenta = gameTile.getMagenta();
-//		red = gameTile.getRed();
-//		yellow = gameTile.getYellow();
-//		orange = gameTile.getOrange();
-//		green = gameTile.getGreen();
-//		grue = gameTile.getGrue();
-//		blue = gameTile.getBlue();
-//		purple = gameTile.getPurple();
 		reallyGreen = Color.parseColor("#00FF00");
 		reallyRed = Color.parseColor("#FF0000");	
 	}
@@ -158,19 +145,15 @@ public class GameScreen extends Activity
 	{
 		if(gameTile.isHotButton(tileNumber) && (playerProgress <= 5)) //If the player taped the special button and they are not done with the instructions,
 		{
-			endTime = System.currentTimeMillis();
-			updateScore(startTime, endTime);
+			playerScore++;
 			updatePlayerProgress();
 			updateGrid(playerProgress);
-			startTime = System.currentTimeMillis();
 		}
 		else if(gameTile.isHotButton(tileNumber) && (playerProgress == 6))
 		{
-			endTime = System.currentTimeMillis();
-			updateScore(startTime, endTime);
+			playerScore++;
 			updatePlayerProgress();
 			updateGrid(playerProgress);
-			startTime = System.currentTimeMillis();
 			nextLevel();
 		}
 		else
@@ -212,15 +195,6 @@ public class GameScreen extends Activity
 		tile7.setBackgroundColor(gridPattern[6]);
 		tile8.setBackgroundColor(gridPattern[7]);
 		tile9.setBackgroundColor(gridPattern[8]);
-	}
-
-	private void updateScore(long timeIn, long timeOut)
-	{
-		int returnValue = 0;
-		long timeInterval = (endTime - startTime);
-		//SOME MATH TO DETERMINE SCORE = returnValue TODO
-		playerScore += returnValue; //MUST BE AN INTERGER!
-		scoreDisplay.setText(playerScore);
 	}
 	
 	/**
