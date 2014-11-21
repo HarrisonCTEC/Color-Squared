@@ -6,6 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Main Welcome Screen
+ * @author Harrison H
+ * @version 1.0
+ * ©2014 Orange Lightning Research
+ */
 public class title_screen extends Activity
 {
 	private Button startButton;

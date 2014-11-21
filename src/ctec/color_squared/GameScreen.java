@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 /**
  * Game screen
- * @author Harrison H, Mark S
+ * @author Mark Shamy
  * @version 1.0 11/20/14
  * ©2014 Orange Lightning Research
  */
@@ -164,27 +164,19 @@ public class GameScreen extends Activity
 			updateGrid(playerProgress);
 			startTime = System.currentTimeMillis();
 		}
+		else if(gameTile.isHotButton(tileNumber) && (playerProgress == 6))
+		{
+			endTime = System.currentTimeMillis();
+			updateScore(startTime, endTime);
+			updatePlayerProgress();
+			updateGrid(playerProgress);
+			startTime = System.currentTimeMillis();
+			nextLevel();
+		}
 		else
 		{
 				endGame();
 		}
-	}
-	
-/**
- * Destroyes the Tiles object than recreates it, this insures a clean playing gird
- */
-	private void resetGrid()
-	{
-		if(gameTile == null) //If tiles is a tiles shaped hole in the universe, or if it has not been created yet, make it
-		{
-			gameTile = new Tiles();	
-		}
-		else //But if it aldready exits, destroy it and make a new one
-		{
-			gameTile = null;
-			gameTile = new Tiles();
-		}
-		
 	}
 
 /**
@@ -202,13 +194,13 @@ public class GameScreen extends Activity
 
 /**
  * Randomly assings colors hotButton, hotColor, and all other tile colors than sets the tiles to those colors
- * @param whereIsPlay the index in the Array List of playerProgress
+ * @param whereIsPlayer the index in the Array List of playerProgress
  */
 	private void updateGrid(int whereIsPlayer) //I'm eating cake right now at 2:35 AM ... it tastes good!
 	{
 		int specialTile = (int) Math.ceil(Math.random() * 9); //Generate a random number between one and nine and name it specialTile
 		int currentColor = playerColors.get(whereIsPlayer); //From the instructions, based on the index get from that list the stored Color and name it currentColor
-		resetGrid(); //Destroy the grid and make a new one
+		gameTile.resetGrid(); //Destroy the grid and make a new one
 		gameTile.setHotButton(specialTile); //Tell the new one what tile is special
 		gridPattern = gameTile.fillGameGrid(currentColor); //Have the Tiles class generate an Array of Colors that will be the layout of tile colors
 		tile1.setBackgroundColor(gridPattern[0]); //Set the colors of the tiles
@@ -254,5 +246,12 @@ public class GameScreen extends Activity
 	{
 		playerProgress++; //Don't change this!
 		//TODO
+	}
+	
+	private void nextLevel()
+	{
+		playerProgress = 0;
+		levelGenerator();
+		gameTile.resetGrid();
 	}
 }
