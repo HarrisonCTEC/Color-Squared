@@ -12,9 +12,15 @@ import android.widget.TextView;
 
 /**
  * Game screen
+<<<<<<< HEAD
  * 
  * @author Harrison H, Mark S
  * @version 1.0 11/20/14 ©2014 Orange Lightning Research
+=======
+ * @author Mark Shamy
+ * @version 1.0 11/20/14
+ * ©2014 Orange Lightning Research
+>>>>>>> origin/master
  */
 public class GameScreen extends Activity {
 	private Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, color1, color2, color3, color4, color5, color6;
@@ -26,8 +32,6 @@ public class GameScreen extends Activity {
 	private int reallyRed, reallyGreen; // For some reason these are ints?
 	private int[] gridPattern = new int[8];
 	private int playerScore;
-	private long startTime;
-	private long endTime;
 	private TextView scoreDisplay;
 	private TableLayout gamescreenlayout;
 
@@ -35,6 +39,7 @@ public class GameScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_screen);
+<<<<<<< HEAD
 
 		tile1 = (Button) findViewById(R.id.tile1);
 		tile2 = (Button) findViewById(R.id.tile2);
@@ -91,6 +96,31 @@ public class GameScreen extends Activity {
 		 * gameTile.getPurple(); reallyGreen = Color.parseColor("#00FF00");
 		 * reallyRed = Color.parseColor("#FF0000");
 		 */
+=======
+	
+		tile1 = (Button)findViewById(R.id.tile1);
+		tile2 = (Button)findViewById(R.id.tile2);
+		tile3 = (Button)findViewById(R.id.tile3);
+		tile4 = (Button)findViewById(R.id.tile4);
+		tile5 = (Button)findViewById(R.id.tile5);
+		tile6 = (Button)findViewById(R.id.tile6);
+		tile7 = (Button)findViewById(R.id.tile7);
+		tile8 = (Button)findViewById(R.id.tile8);
+		tile9 = (Button)findViewById(R.id.tile9);
+		scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
+		//TODO Make and initalize other buttons menuButton
+		
+		playerColors = new ArrayList<Integer>();
+		playerScore = 0;
+		levelGenerator();
+		playerProgress = 0;
+		displayPlayerColors();
+		updatePlayerProgress();
+		updateGrid(0);
+		setupListners();
+		reallyGreen = Color.parseColor("#00FF00");
+		reallyRed = Color.parseColor("#FF0000");	
+>>>>>>> origin/master
 	}
 
 	private void setupListners() {
@@ -175,10 +205,10 @@ public class GameScreen extends Activity {
 																		// the
 																		// instructions,
 		{
-			endTime = System.currentTimeMillis();
-			updateScore(startTime, endTime);
+			playerScore++;
 			updatePlayerProgress();
 			updateGrid(playerProgress);
+<<<<<<< HEAD
 			startTime = System.currentTimeMillis();
 		}
 		else {
@@ -198,11 +228,24 @@ public class GameScreen extends Activity {
 			gameTile = new Tiles();
 		}
 		else // But if it aldready exits, destroy it and make a new one
-		{
-			gameTile = null;
-			gameTile = new Tiles();
+=======
 		}
+		else if(gameTile.isHotButton(tileNumber) && (playerProgress == 6))
+		{
+			playerScore++;
+			updatePlayerProgress();
+			updateGrid(playerProgress);
+			nextLevel();
+		}
+		else
+>>>>>>> origin/master
+		{
+				endGame();
+		}
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 	}
 
 	/**
@@ -219,6 +262,7 @@ public class GameScreen extends Activity {
 		}
 	}
 
+<<<<<<< HEAD
 	/**
 	 * Randomly assings colors hotButton, hotColor, and all other tile colors
 	 * than sets the tiles to those colors
@@ -253,6 +297,20 @@ public class GameScreen extends Activity {
 															// layout of tile
 															// colors
 		tile1.setBackgroundColor(gridPattern[0]); // Set the colors of the tiles
+=======
+/**
+ * Randomly assigns colors hotButton, hotColor, and all other tile colors than sets the tiles to those colors
+ * @param whereIsPlayer the index in the Array List of playerProgress
+ */
+	private void updateGrid(int whereIsPlayer) //I'm eating cake right now at 2:35 AM ... it tastes good!
+	{
+		int specialTile = (int) Math.ceil(Math.random() * 9); //Generate a random number between one and nine and name it specialTile
+		int currentColor = playerColors.get(whereIsPlayer); //From the instructions, based on the index get from that list the stored Color and name it currentColor
+		gameTile.resetGrid(); //Destroy the grid and make a new one
+		gameTile.setHotButton(specialTile); //Tell the new one what tile is special
+		gridPattern = gameTile.fillGameGrid(currentColor); //Have the Tiles class generate an Array of Colors that will be the layout of tile colors
+		tile1.setBackgroundColor(gridPattern[0]); //Set the colors of the tiles
+>>>>>>> origin/master
 		tile2.setBackgroundColor(gridPattern[1]);
 		tile3.setBackgroundColor(gridPattern[2]);
 		tile4.setBackgroundColor(gridPattern[3]);
@@ -262,6 +320,7 @@ public class GameScreen extends Activity {
 		tile8.setBackgroundColor(gridPattern[7]);
 		tile9.setBackgroundColor(gridPattern[8]);
 	}
+<<<<<<< HEAD
 
 	private void updateScore(long timeIn, long timeOut) {
 		int returnValue = 0;
@@ -271,6 +330,9 @@ public class GameScreen extends Activity {
 		scoreDisplay.setText(playerScore);
 	}
 
+=======
+	
+>>>>>>> origin/master
 	/**
 	 * Opens up the final activity and passes the players score there
 	 */
@@ -292,5 +354,12 @@ public class GameScreen extends Activity {
 	private void updatePlayerProgress() {
 		playerProgress++; // Don't change this!
 		// TODO
+	}
+	
+	private void nextLevel()
+	{
+		playerProgress = 0;
+		levelGenerator();
+		gameTile.resetGrid();
 	}
 }

@@ -5,7 +5,7 @@ import android.graphics.Color;
 /**
  * Tiles object
  * @contains Game colors, Tile states and hotButton
- * @author Harrison H, Mark S
+ * @author Mark Shamy
  * ©2014 Orange Lightning Research
  */
 public class Tiles
@@ -251,4 +251,27 @@ public class Tiles
         	}
         	return returnValue;
     	}
+	
+	public void resetGrid()
+	{
+		gridPattern[0] = 0;
+		gridPattern[1] = 0;
+		gridPattern[2] = 0;
+		gridPattern[3] = 0;
+		gridPattern[4] = 0;
+		gridPattern[5] = 0;
+		gridPattern[6] = 0;
+		gridPattern[7] = 0;
+		gridPattern[8] = 0;
+		usedColors[0] = false;
+		usedColors[1] = false;
+		usedColors[2] = false;
+		usedColors[3] = false;
+		usedColors[4] = false;
+		usedColors[5] = false;
+		usedColors[6] = false;
+		usedColors[7] = false;
+		usedColors[8] = false;
+		hotButton = 0;
+	}
 }

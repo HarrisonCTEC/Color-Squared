@@ -6,7 +6,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+<<<<<<< HEAD
 public class title_screen extends Activity {
+=======
+/**
+ * Main Welcome Screen
+ * @author Harrison H
+ * @version 1.0
+ * ©2014 Orange Lightning Research
+ */
+public class title_screen extends Activity
+{
+>>>>>>> origin/master
 	private Button startButton;
 
 	/** Called when the activity is first created. */
