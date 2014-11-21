@@ -287,7 +287,7 @@ public class GameScreen extends Activity {
 		tile1.setBackgroundColor(gridPattern[0]); // Set the colors of the tiles
 
 /**
- * Randomly assigns colors hotButton, hotColor, and all other tile colors than sets the tiles to those colors
+ * Randomly assings colors hotButton, hotColor, and all other tile colors than sets the tiles to those colors
  * @param whereIsPlayer the index in the Array List of playerProgress
  */
 	private void updateGrid(int whereIsPlayer) //I'm eating cake right now at 2:35 AM ... it tastes good!
