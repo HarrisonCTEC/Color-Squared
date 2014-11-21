@@ -12,15 +12,15 @@ import android.widget.TextView;
 
 /**
  * Game screen
-<<<<<<< HEAD
+
  * 
  * @author Harrison H, Mark S
  * @version 1.0 11/20/14 ©2014 Orange Lightning Research
-=======
+
  * @author Mark Shamy
  * @version 1.0 11/20/14
  * ©2014 Orange Lightning Research
->>>>>>> origin/master
+
  */
 public class GameScreen extends Activity {
 	private Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, color1, color2, color3, color4, color5, color6;
@@ -39,7 +39,7 @@ public class GameScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_screen);
-<<<<<<< HEAD
+
 
 		tile1 = (Button) findViewById(R.id.tile1);
 		tile2 = (Button) findViewById(R.id.tile2);
@@ -60,26 +60,26 @@ public class GameScreen extends Activity {
 		gamescreenlayout = (TableLayout) findViewById(R.id.GameScreenLayout);
 		// TODO Make and initalize other buttons menuButton
 
-		/*
-		 * tile1.setScaleX(gamescreenlayout.getWidth());
-		 * tile1.setScaleY(gamescreenlayout.getHeight());
-		 * tile2.setScaleX(gamescreenlayout.getWidth());
-		 * tile2.setScaleY(gamescreenlayout.getHeight());
-		 * tile3.setScaleX(gamescreenlayout.getWidth());
-		 * tile3.setScaleY(gamescreenlayout.getHeight());
-		 * tile4.setScaleX(gamescreenlayout.getWidth());
-		 * tile4.setScaleY(gamescreenlayout.getHeight());
-		 * tile5.setScaleX(gamescreenlayout.getWidth());
-		 * tile5.setScaleY(gamescreenlayout.getHeight());
-		 * tile6.setScaleX(gamescreenlayout.getWidth());
-		 * tile6.setScaleY(gamescreenlayout.getHeight());
-		 * tile7.setScaleX(gamescreenlayout.getWidth());
-		 * tile7.setScaleY(gamescreenlayout.getHeight());
-		 * tile8.setScaleX(gamescreenlayout.getWidth());
-		 * tile8.setScaleY(gamescreenlayout.getHeight());
-		 * tile9.setScaleX(gamescreenlayout.getWidth());
-		 * tile9.setScaleY(gamescreenlayout.getHeight());
-		 */
+		
+		  tile1.setScaleX(gamescreenlayout.getWidth());
+		  tile1.setScaleY(gamescreenlayout.getHeight());
+		  tile2.setScaleX(gamescreenlayout.getWidth());
+		  tile2.setScaleY(gamescreenlayout.getHeight());
+		  tile3.setScaleX(gamescreenlayout.getWidth());
+		  tile3.setScaleY(gamescreenlayout.getHeight());
+		  tile4.setScaleX(gamescreenlayout.getWidth());
+		  tile4.setScaleY(gamescreenlayout.getHeight());
+		  tile5.setScaleX(gamescreenlayout.getWidth());
+		  tile5.setScaleY(gamescreenlayout.getHeight());
+		  tile6.setScaleX(gamescreenlayout.getWidth());
+		  tile6.setScaleY(gamescreenlayout.getHeight());
+		  tile7.setScaleX(gamescreenlayout.getWidth());
+		  tile7.setScaleY(gamescreenlayout.getHeight());
+		  tile8.setScaleX(gamescreenlayout.getWidth());
+		  tile8.setScaleY(gamescreenlayout.getHeight());
+		  tile9.setScaleX(gamescreenlayout.getWidth());
+		  tile9.setScaleY(gamescreenlayout.getHeight());
+		 
 
 		/*
 		 * playerColors = new ArrayList<Integer>(); playerScore = 0;
@@ -96,18 +96,6 @@ public class GameScreen extends Activity {
 		 * gameTile.getPurple(); reallyGreen = Color.parseColor("#00FF00");
 		 * reallyRed = Color.parseColor("#FF0000");
 		 */
-=======
-	
-		tile1 = (Button)findViewById(R.id.tile1);
-		tile2 = (Button)findViewById(R.id.tile2);
-		tile3 = (Button)findViewById(R.id.tile3);
-		tile4 = (Button)findViewById(R.id.tile4);
-		tile5 = (Button)findViewById(R.id.tile5);
-		tile6 = (Button)findViewById(R.id.tile6);
-		tile7 = (Button)findViewById(R.id.tile7);
-		tile8 = (Button)findViewById(R.id.tile8);
-		tile9 = (Button)findViewById(R.id.tile9);
-		scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
 		//TODO Make and initalize other buttons menuButton
 		
 		playerColors = new ArrayList<Integer>();
@@ -120,7 +108,7 @@ public class GameScreen extends Activity {
 		setupListners();
 		reallyGreen = Color.parseColor("#00FF00");
 		reallyRed = Color.parseColor("#FF0000");	
->>>>>>> origin/master
+
 	}
 
 	private void setupListners() {
@@ -208,7 +196,7 @@ public class GameScreen extends Activity {
 			playerScore++;
 			updatePlayerProgress();
 			updateGrid(playerProgress);
-<<<<<<< HEAD
+
 			startTime = System.currentTimeMillis();
 		}
 		else {
@@ -228,7 +216,7 @@ public class GameScreen extends Activity {
 			gameTile = new Tiles();
 		}
 		else // But if it aldready exits, destroy it and make a new one
-=======
+
 		}
 		else if(gameTile.isHotButton(tileNumber) && (playerProgress == 6))
 		{
@@ -238,14 +226,14 @@ public class GameScreen extends Activity {
 			nextLevel();
 		}
 		else
->>>>>>> origin/master
+
 		{
 				endGame();
 		}
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
+
+
+
 	}
 
 	/**
@@ -262,7 +250,7 @@ public class GameScreen extends Activity {
 		}
 	}
 
-<<<<<<< HEAD
+
 	/**
 	 * Randomly assings colors hotButton, hotColor, and all other tile colors
 	 * than sets the tiles to those colors
@@ -297,7 +285,7 @@ public class GameScreen extends Activity {
 															// layout of tile
 															// colors
 		tile1.setBackgroundColor(gridPattern[0]); // Set the colors of the tiles
-=======
+
 /**
  * Randomly assigns colors hotButton, hotColor, and all other tile colors than sets the tiles to those colors
  * @param whereIsPlayer the index in the Array List of playerProgress
@@ -310,7 +298,7 @@ public class GameScreen extends Activity {
 		gameTile.setHotButton(specialTile); //Tell the new one what tile is special
 		gridPattern = gameTile.fillGameGrid(currentColor); //Have the Tiles class generate an Array of Colors that will be the layout of tile colors
 		tile1.setBackgroundColor(gridPattern[0]); //Set the colors of the tiles
->>>>>>> origin/master
+
 		tile2.setBackgroundColor(gridPattern[1]);
 		tile3.setBackgroundColor(gridPattern[2]);
 		tile4.setBackgroundColor(gridPattern[3]);
@@ -320,7 +308,7 @@ public class GameScreen extends Activity {
 		tile8.setBackgroundColor(gridPattern[7]);
 		tile9.setBackgroundColor(gridPattern[8]);
 	}
-<<<<<<< HEAD
+
 
 	private void updateScore(long timeIn, long timeOut) {
 		int returnValue = 0;
@@ -330,9 +318,9 @@ public class GameScreen extends Activity {
 		scoreDisplay.setText(playerScore);
 	}
 
-=======
+
 	
->>>>>>> origin/master
+
 	/**
 	 * Opens up the final activity and passes the players score there
 	 */
