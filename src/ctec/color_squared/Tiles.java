@@ -6,7 +6,7 @@ import android.graphics.Color;
  * Tiles object
  * @contains Game colors, Tile states and hotButton
  * @author Mark Shamy
- * ©2014 Orange Lightning Research
+ * Â©2014 Orange Lightning Research
  */
 public class Tiles
 {
@@ -24,8 +24,8 @@ public class Tiles
 	        this.yellow = Color.parseColor("#C08000");
 	        this.orange = Color.parseColor("#E06040");
 	        this.green = Color.parseColor("#C0E000");
-	        this.grue = Color.parseColor("#E6EA080");
-	        this.blue = Color.parseColor("#E00A0C0");
+	        this.grue = Color.parseColor("#209F81");
+	        this.blue = Color.parseColor("#00A0C0");
 	        this.purple = Color.parseColor("#6080C0");
 	}
  
