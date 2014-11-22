@@ -5,27 +5,15 @@ import android.graphics.Color;
 /**
  * Tiles object
  * 
- * @contains Game colors, Tile states and hotButton
- * @author Mark Shamy ©2014 Orange Lightning Research
+ * @contains Game colors, Tile states and hotButton <<<<<<< HEAD
+ * @author Mark Shamy ©2014 Orange Lightning Research =======
+ * @author Mark Shamy Â©2014 Orange Lightning Research >>>>>>> origin/master
  */
 public class Tiles {
 	private int[] gridPattern = new int[8];
 	private boolean[] usedColors = new boolean[8];
 	private int pink, magenta, red, yellow, orange, green, grue, blue, purple;
 	private int hotButton;
-
-	public Tiles() {
-		//this.hotButton = 0;
-		//this.pink = Color.parseColor("#E0A0C0"); //This converts from a hex string into a Color int
-		//this.magenta = Color.parseColor("#E04080");
-		//this.red = Color.parseColor("#E04040");
-		//this.yellow = Color.parseColor("#C08000");
-		//this.orange = Color.parseColor("#E06040");
-		//this.green = Color.parseColor("#C0E000");
-		//this.grue = Color.parseColor("#E6EA080");
-		//this.blue = Color.parseColor("#E00A0C0");
-		//this.purple = Color.parseColor("#6080C0");
-	}
 
 	/**
 	 * Returns one of the nine colors randomly when called
@@ -68,6 +56,7 @@ public class Tiles {
 
 		//What ever that returnValue was changed to in the above conditionals, return the returnValue
 	}
+
 	/**
 	 * Checks to see if a color has been used or not. Returns true if the color is being used already
 	 * 
