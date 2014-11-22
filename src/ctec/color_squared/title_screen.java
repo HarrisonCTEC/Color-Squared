@@ -13,8 +13,6 @@ public class title_screen extends Activity {
  * @version 1.0
  * ©2014 Orange Lightning Research
  */
-public class title_screen extends Activity
-{
 	private Button startButton;
 
 	/** Called when the activity is first created. */
@@ -40,5 +38,4 @@ public class title_screen extends Activity
 			}
 		});
 	}
-}
 }

@@ -12,15 +12,16 @@ import android.widget.TextView;
 
 /**
  * Game screen
-
+ * 
  * 
  * @author Harrison H, Mark S
  * @version 1.0 11/20/14 ©2014 Orange Lightning Research
-
+ * 
  * @author Mark Shamy
- * @version 1.0 11/20/14
- * ©2014 Orange Lightning Research
-
+ * @version 1.0 11/20/14 ©2014 Orange Lightning Research
+ * 
+ * @author Nickolas Koamrnitsky
+ * @version 1.0 11/20/14 ©2014 Orange Lightning Research
  */
 public class GameScreen extends Activity {
 	private Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, color1, color2, color3, color4, color5, color6;
@@ -39,7 +40,6 @@ public class GameScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_screen);
-
 
 		tile1 = (Button) findViewById(R.id.tile1);
 		tile2 = (Button) findViewById(R.id.tile2);
@@ -60,26 +60,24 @@ public class GameScreen extends Activity {
 		gamescreenlayout = (TableLayout) findViewById(R.id.GameScreenLayout);
 		// TODO Make and initalize other buttons menuButton
 
-		
-		  tile1.setScaleX(gamescreenlayout.getWidth());
-		  tile1.setScaleY(gamescreenlayout.getHeight());
-		  tile2.setScaleX(gamescreenlayout.getWidth());
-		  tile2.setScaleY(gamescreenlayout.getHeight());
-		  tile3.setScaleX(gamescreenlayout.getWidth());
-		  tile3.setScaleY(gamescreenlayout.getHeight());
-		  tile4.setScaleX(gamescreenlayout.getWidth());
-		  tile4.setScaleY(gamescreenlayout.getHeight());
-		  tile5.setScaleX(gamescreenlayout.getWidth());
-		  tile5.setScaleY(gamescreenlayout.getHeight());
-		  tile6.setScaleX(gamescreenlayout.getWidth());
-		  tile6.setScaleY(gamescreenlayout.getHeight());
-		  tile7.setScaleX(gamescreenlayout.getWidth());
-		  tile7.setScaleY(gamescreenlayout.getHeight());
-		  tile8.setScaleX(gamescreenlayout.getWidth());
-		  tile8.setScaleY(gamescreenlayout.getHeight());
-		  tile9.setScaleX(gamescreenlayout.getWidth());
-		  tile9.setScaleY(gamescreenlayout.getHeight());
-		 
+		/*tile1.setScaleX(gamescreenlayout.getWidth()/2);
+		tile1.setScaleY(gamescreenlayout.getHeight()/2);
+		tile2.setScaleX(gamescreenlayout.getWidth()/2);
+		tile2.setScaleY(gamescreenlayout.getHeight()/2);
+		tile3.setScaleX(gamescreenlayout.getWidth()/2);
+		tile3.setScaleY(gamescreenlayout.getHeight()/2);
+		tile4.setScaleX(gamescreenlayout.getWidth()/2);
+		tile4.setScaleY(gamescreenlayout.getHeight()/2);
+		tile5.setScaleX(gamescreenlayout.getWidth()/2);
+		tile5.setScaleY(gamescreenlayout.getHeight()/2);
+		tile6.setScaleX(gamescreenlayout.getWidth()/2);
+		tile6.setScaleY(gamescreenlayout.getHeight()/2);
+		tile7.setScaleX(gamescreenlayout.getWidth()/2);
+		tile7.setScaleY(gamescreenlayout.getHeight()/2);
+		tile8.setScaleX(gamescreenlayout.getWidth()/2);
+		tile8.setScaleY(gamescreenlayout.getHeight()/2);
+		tile9.setScaleX(gamescreenlayout.getWidth()/2);
+		tile9.setScaleY(gamescreenlayout.getHeight()/2);*/
 
 		/*
 		 * playerColors = new ArrayList<Integer>(); playerScore = 0;
@@ -96,18 +94,20 @@ public class GameScreen extends Activity {
 		 * gameTile.getPurple(); reallyGreen = Color.parseColor("#00FF00");
 		 * reallyRed = Color.parseColor("#FF0000");
 		 */
-		//TODO Make and initalize other buttons menuButton
-		
+		//TODO Make and initialize other buttons menuButton
+
 		playerColors = new ArrayList<Integer>();
 		playerScore = 0;
+		scoreDisplay.setText("Score: " + playerScore);
+
 		levelGenerator();
-		playerProgress = 0;
+		/*playerProgress = 0;
 		displayPlayerColors();
 		updatePlayerProgress();
 		updateGrid1(0);
 		setupListners();
 		reallyGreen = Color.parseColor("#00FF00");
-		reallyRed = Color.parseColor("#FF0000");	
+		reallyRed = Color.parseColor("#FF0000");*/
 
 	}
 
@@ -169,35 +169,17 @@ public class GameScreen extends Activity {
 	}
 
 	/**
-	 * Whenever a tile is pressed this checks to see if it is the hotButton or
-	 * not as well as starting and stoping the clock, If the player clicks a
-	 * tile and it is not the hotbutton or there are no more instructions left,
-	 * the game is over
+	 * Whenever a tile is pressed this checks to see if it is the hotButton or not as well as starting and stoping the clock, If the player clicks a tile and it is not the hotbutton or there are no more instructions left, the game is over
 	 * 
 	 * @param tileNumber
 	 *            the tile that is being pressed
 	 */
 	private void onTilePress(int tileNumber) {
-		if (gameTile.isHotButton(tileNumber) && (playerProgress <= 5)) // If the
-																		// player
-																		// taped
-																		// the
-																		// special
-																		// button
-																		// and
-																		// they
-																		// are
-																		// not
-																		// done
-																		// with
-																		// the
-																		// instructions,
+		if (gameTile.isHotButton(tileNumber) && (playerProgress <= 5)) // If the player taped the special button and they are not done with the instructions,
 		{
 			playerScore++;
 			updatePlayerProgress();
 			updateGrid1(playerProgress);
-
-			startTime = System.currentTimeMillis();
 		}
 		else {
 			endGame();
@@ -205,21 +187,14 @@ public class GameScreen extends Activity {
 	}
 
 	/**
-	 * Destroyes the Tiles object than recreates it, this insures a clean
-	 * playing gird
+	 * Destroyes the Tiles object than recreates it, this insures a clean playing gird
 	 */
-	private void resetGrid() {
-		if (gameTile == null) // If tiles is a tiles shaped hole in the
-								// universe, or if it has not been created yet,
-								// make it
+	private void resetGrid(int tileNumber) {
+		if (gameTile == null) // If tiles is a tiles shaped hole in the universe, or if it has not been created yet,make it
 		{
 			gameTile = new Tiles();
 		}
-		else // But if it already exits, destroy it and make a new one
-
-		}
-		else if(gameTile.isHotButton(tileNumber) && (playerProgress == 6))
-		{
+		else if (gameTile.isHotButton(tileNumber) && (playerProgress == 6)) {
 			playerScore++;
 			updatePlayerProgress();
 			updateGrid1(playerProgress);
@@ -228,33 +203,32 @@ public class GameScreen extends Activity {
 		else
 
 		{
-				endGame();
+			endGame();
 		}
-
-
-
 
 	}
 
 	/**
 	 * Creates the players instructions on what to tap
 	 */
-	private void levelGenerator()
-	{
-		int counter = 0; // This is the escape route out of the while loop
-		while (counter != 6) // Do six times
-		{
-			playerColors.add(gameTile.randomColor()); // Add the the Array List
-														// playColors 6 random
-														// Colors
-			counter++; // Take counter and add 1
-		}
+	private void levelGenerator() {
+		Tiles.randomColor();
+		color1.setBackgroundColor(gameTile.randomColor);
+		Tiles.randomColor();
+		color2.setBackgroundColor(gameTile.randomColor);
+		Tiles.randomColor();
+		color3.setBackgroundColor(gameTile.randomColor);
+		Tiles.randomColor();
+		color4.setBackgroundColor(gameTile.randomColor);
+		Tiles.randomColor();
+		color5.setBackgroundColor(gameTile.randomColor);
+		Tiles.randomColor();
+		color6.setBackgroundColor(gameTile.randomColor);
+
 	}
 
-
 	/**
-	 * Randomly assings colors hotButton, hotColor, and all other tile colors
-	 * than sets the tiles to those colors
+	 * Randomly assings colors hotButton, hotColor, and all other tile colors than sets the tiles to those colors
 	 * 
 	 * @param whereIsPlay
 	 *            the index in the Array List of playerProgress
@@ -262,35 +236,21 @@ public class GameScreen extends Activity {
 	private void updateGrid1(int whereIsPlayer) // I'm eating cake right now at
 												// 2:35 AM ... it tastes good!
 	{
-		int specialTile = (int) Math.ceil(Math.random() * 9); // Generate a
-																// random number
-																// between one
-																// and nine and
-																// name it
-																// specialTile
-		int currentColor = playerColors.get(whereIsPlayer); // From the
-															// instructions,
-															// based on the
-															// index get from
-															// that list the
-															// stored Color and
-															// name it
-															// currentColor
-		resetGrid(); // Destroy the grid and make a new one
+		int specialTile = (int) Math.ceil(Math.random() * 9); // Generate a random number between one and nine and name it specialTile
+		int currentColor = playerColors.get(whereIsPlayer); // From the instructions, based on the index get from that list the stored Color and name it currentColor
+		resetGrid(1); // Destroy the grid and make a new one
 		gameTile.setHotButton(specialTile); // Tell the new one what tile is
 											// special
-		gridPattern = gameTile.fillGameGrid(currentColor); // Have the Tiles
-															// class generate an
-															// Array of Colors
-															// that will be the
-															// layout of tile
-															// colors
+		gridPattern = gameTile.fillGameGrid(currentColor); // Have the Tiles class generate an Array of Colors that will be the layout of tile colors
 		tile1.setBackgroundColor(gridPattern[0]); // Set the colors of the tiles
 	}
-/**
- * Randomly assings colors hotButton, hotColor, and all other tile colors than sets the tiles to those colors
- * @param whereIsPlayer the index in the Array List of playerProgress
- */
+
+	/**
+	 * Randomly assings colors hotButton, hotColor, and all other tile colors than sets the tiles to those colors
+	 * 
+	 * @param whereIsPlayer
+	 *            the index in the Array List of playerProgress
+	 */
 	private void updateGrid(int whereIsPlayer) //I'm eating cake right now at 2:35 AM ... it tastes good!
 	{
 		int specialTile = (int) Math.ceil(Math.random() * 9); //Generate a random number between one and nine and name it specialTile
@@ -310,17 +270,12 @@ public class GameScreen extends Activity {
 		tile9.setBackgroundColor(gridPattern[8]);
 	}
 
-
 	private void updateScore(long timeIn, long timeOut) {
 		int returnValue = 0;
-		long timeInterval = (endTime - startTime);
 		// SOME MATH TO DETERMINE SCORE = returnValue TODO
 		playerScore += returnValue; // MUST BE AN INTERGER!
 		scoreDisplay.setText(playerScore);
 	}
-
-
-	
 
 	/**
 	 * Opens up the final activity and passes the players score there
@@ -337,16 +292,13 @@ public class GameScreen extends Activity {
 	}
 
 	/**
-	 * Changes the color of the outline of the boxes of the instructions from
-	 * red to green when the player progreses
+	 * Changes the color of the outline of the boxes of the instructions from red to green when the player progreses
 	 */
 	private void updatePlayerProgress() {
-		playerProgress++; // Don't change this!
 		// TODO
 	}
-	
-	private void nextLevel()
-	{
+
+	private void nextLevel() {
 		playerProgress = 0;
 		levelGenerator();
 		gameTile.resetGrid();
