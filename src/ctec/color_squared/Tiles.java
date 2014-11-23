@@ -13,7 +13,7 @@ public class Tiles {
 	private int[] gridPattern = new int[8];
 	private boolean[] usedColors = new boolean[8];
 	private int pink, magenta, red, yellow, orange, green, grue, blue, purple;
-	private int hotButton;
+	private static int hotButton;
 
 	/**
 	 * Returns one of the nine colors randomly when called
@@ -28,30 +28,39 @@ public class Tiles {
 		if (randomNumber == 1) //If that randomly generated number is 1
 		{
 			randomColor = Color.BLACK;
+			hotButton = 1;
 		}
 		else if (randomNumber == 2) {
 			randomColor = Color.RED;
+			hotButton = 2;
 		}
 		else if (randomNumber == 3) {
 			randomColor = Color.GREEN;
+			hotButton = 3;
 		}
 		else if (randomNumber == 4) {
 			randomColor = Color.YELLOW;
+			hotButton = 4;
 		}
 		else if (randomNumber == 5) {
 			randomColor = Color.BLUE;
+			hotButton = 5;
 		}
 		else if (randomNumber == 6) {
 			randomColor = Color.CYAN;
+			hotButton = 6;
 		}
 		else if (randomNumber == 7) {
 			randomColor = Color.MAGENTA;
+			hotButton = 7;
 		}
 		else if (randomNumber == 8) {
 			randomColor = Color.GRAY;
+			hotButton = 8;
 		}
 		else if (randomNumber == 9) {
 			randomColor = Color.WHITE;
+			hotButton = 9;
 		}
 
 		//What ever that returnValue was changed to in the above conditionals, return the returnValue
@@ -157,7 +166,7 @@ public class Tiles {
 	 * @param currentColor
 	 *            the color of the hotButton
 	 */
-	private void setHotButtonColorAndNumber(int hotButton, int currentColor) {
+	public void setHotButtonColorAndNumber(int hotButton, int currentColor) {
 		gridPattern[hotButton] = currentColor; //Take the current color that the player should find at this poijnt and shove it inside the gridPattern Array at the index coresponding with the tile's number
 		setUsedColors(currentColor); //Change the boolean Array so we don't randomly generate this nnumber again.
 	}

@@ -165,6 +165,7 @@ public class GameScreen extends Activity {
 			}
 		});
 	}
+	
 
 	/**
 	 * Whenever a tile is pressed this checks to see if it is the hotButton or not as well as starting and stoping the clock, If the player clicks a tile and it is not the hotbutton or there are no more instructions left, the game is over
@@ -177,7 +178,7 @@ public class GameScreen extends Activity {
 		{
 			playerScore++;
 			updatePlayerProgress();
-			updateGrid1(playerProgress);
+			//updateGrid1(playerProgress);
 		}
 		else {
 			endGame();
@@ -276,6 +277,7 @@ public class GameScreen extends Activity {
 	 */
 	private void endGame() {
 		// TODO
+		System.exit(0);
 	}
 
 	/**
