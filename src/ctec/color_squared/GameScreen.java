@@ -24,7 +24,8 @@ import android.widget.TextView;
  * @version 1.0 11/20/14 ©2014 Orange Lightning Research
  */
 public class GameScreen extends Activity {
-	private Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, color1, color2, color3, color4, color5, color6;
+	private Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9;
+	private Button[] color = new Button[6];
 	private ArrayList<Integer> playerColors;
 	private int playerProgress;
 	private Tiles gameTile;
@@ -50,12 +51,12 @@ public class GameScreen extends Activity {
 		tile7 = (Button) findViewById(R.id.tile7);
 		tile8 = (Button) findViewById(R.id.tile8);
 		tile9 = (Button) findViewById(R.id.tile9);
-		color1 = (Button) findViewById(R.id.Color1);
-		color2 = (Button) findViewById(R.id.Color2);
-		color3 = (Button) findViewById(R.id.Color3);
-		color4 = (Button) findViewById(R.id.Color4);
-		color5 = (Button) findViewById(R.id.Color5);
-		color6 = (Button) findViewById(R.id.Color6);
+		color[0] = (Button) findViewById(R.id.Color1);
+		color[1] = (Button) findViewById(R.id.Color2);
+		color[2] = (Button) findViewById(R.id.Color3);
+		color[3] = (Button) findViewById(R.id.Color4);
+		color[4] = (Button) findViewById(R.id.Color5);
+		color[5] = (Button) findViewById(R.id.Color6);
 		scoreDisplay = (TextView) findViewById(R.id.scoreDisplay);
 		gamescreenlayout = (TableLayout) findViewById(R.id.GameScreenLayout);
 		// TODO Make and initalize other buttons menuButton
@@ -99,7 +100,6 @@ public class GameScreen extends Activity {
 		playerColors = new ArrayList<Integer>();
 		playerScore = 0;
 		scoreDisplay.setText("Score: " + playerScore);
-
 		levelGenerator();
 		/*playerProgress = 0;
 		displayPlayerColors();
@@ -212,18 +212,14 @@ public class GameScreen extends Activity {
 	 * Creates the players instructions on what to tap
 	 */
 	private void levelGenerator() {
-		Tiles.randomColor();
-		color1.setBackgroundColor(gameTile.randomColor);
-		Tiles.randomColor();
-		color2.setBackgroundColor(gameTile.randomColor);
-		Tiles.randomColor();
-		color3.setBackgroundColor(gameTile.randomColor);
-		Tiles.randomColor();
-		color4.setBackgroundColor(gameTile.randomColor);
-		Tiles.randomColor();
-		color5.setBackgroundColor(gameTile.randomColor);
-		Tiles.randomColor();
-		color6.setBackgroundColor(gameTile.randomColor);
+		int counter = 0;
+		int x = 0;
+		while (counter != 6) {
+			Tiles.randomColor();
+			color[x].setBackgroundColor(gameTile.randomColor);
+			x++;
+			counter++;
+		}
 
 	}
 
