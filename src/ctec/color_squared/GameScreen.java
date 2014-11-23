@@ -12,16 +12,11 @@ import android.widget.TextView;
 
 /**
  * Game screen
- * 
- * 
- * @author Harrison H, Mark S
- * @version 1.0 11/20/14 ©2014 Orange Lightning Research
- * 
+ *
+ * @author Harrison H
  * @author Mark Shamy
- * @version 1.0 11/20/14 ©2014 Orange Lightning Research
- * 
  * @author Nickolas Koamrnitsky
- * @version 1.0 11/20/14 ©2014 Orange Lightning Research
+ * @version 1.0 11/20/14 Â©2014 Orange Lightning Research
  */
 public class GameScreen extends Activity {
 	private Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9;
