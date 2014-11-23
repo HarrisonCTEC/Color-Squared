@@ -66,6 +66,49 @@ public class Tiles {
 		//What ever that returnValue was changed to in the above conditionals, return the returnValue
 	}
 
+	public static void GameTileColors() {
+		int Black = 1, Red = 1, Green = 1, Yellow = 1, Blue = 1, Cyan = 1, Magenta = 1, Gray = 1, White = 1;
+		randomNumber = (int) Math.ceil(Math.random() * 9);
+		
+		if (randomNumber == 1 & Black == 1) //If that randomly generated number is 1
+		{
+			randomColor = Color.BLACK;
+			Black++;
+		}
+		else if (randomNumber == 2 & Red == 1) {
+			randomColor = Color.RED;
+			Red++;
+		}
+		else if (randomNumber == 3 & Green == 1) {
+			randomColor = Color.GREEN;
+			Green++;
+		}
+		else if (randomNumber == 4 & Yellow == 1) {
+			randomColor = Color.YELLOW;
+			Yellow++;
+		}
+		else if (randomNumber == 5 & Blue == 1) {
+			randomColor = Color.BLUE;
+			Blue++;
+		}
+		else if (randomNumber == 6 & Cyan == 1) {
+			randomColor = Color.CYAN;
+			Cyan++;
+		}
+		else if (randomNumber == 7 & Magenta == 1) {
+			randomColor = Color.MAGENTA;
+			Magenta++;
+		}
+		else if (randomNumber == 8 & Gray == 1) {
+			randomColor = Color.GRAY;
+			Gray++;
+		}
+		else if (randomNumber == 9 & White == 1) {
+			randomColor = Color.WHITE;
+			White++;
+		}
+	}
+
 	/**
 	 * Checks to see if a color has been used or not. Returns true if the color is being used already
 	 * 

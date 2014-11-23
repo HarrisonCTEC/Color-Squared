@@ -24,7 +24,7 @@ import android.widget.TextView;
  * @version 1.0 11/20/14 ©2014 Orange Lightning Research
  */
 public class GameScreen extends Activity {
-	private Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9;
+	private Button[] tile = new Button[10];
 	private Button[] color = new Button[6];
 	private ArrayList<Integer> playerColors;
 	private int playerProgress;
@@ -42,15 +42,15 @@ public class GameScreen extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_screen);
 
-		tile1 = (Button) findViewById(R.id.tile1);
-		tile2 = (Button) findViewById(R.id.tile2);
-		tile3 = (Button) findViewById(R.id.tile3);
-		tile4 = (Button) findViewById(R.id.tile4);
-		tile5 = (Button) findViewById(R.id.tile5);
-		tile6 = (Button) findViewById(R.id.tile6);
-		tile7 = (Button) findViewById(R.id.tile7);
-		tile8 = (Button) findViewById(R.id.tile8);
-		tile9 = (Button) findViewById(R.id.tile9);
+		tile[0] = (Button) findViewById(R.id.tile1);
+		tile[1] = (Button) findViewById(R.id.tile2);
+		tile[2] = (Button) findViewById(R.id.tile3);
+		tile[3] = (Button) findViewById(R.id.tile4);
+		tile[4] = (Button) findViewById(R.id.tile5);
+		tile[5] = (Button) findViewById(R.id.tile6);
+		tile[6] = (Button) findViewById(R.id.tile7);
+		tile[7] = (Button) findViewById(R.id.tile8);
+		tile[8] = (Button) findViewById(R.id.tile9);
 		color[0] = (Button) findViewById(R.id.Color1);
 		color[1] = (Button) findViewById(R.id.Color2);
 		color[2] = (Button) findViewById(R.id.Color3);
@@ -104,68 +104,67 @@ public class GameScreen extends Activity {
 		playerProgress = 0;
 		displayPlayerColors();
 		updatePlayerProgress();
-		//updateGrid1(0);
+		updateGrid();
 		setupListners();
 
 	}
 
 	private void setupListners() {
-		tile1.setOnClickListener(new View.OnClickListener() {
+		tile[0].setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View currentView) {
 				onTilePress(1);
 			}
 		});
-		tile2.setOnClickListener(new View.OnClickListener() {
+		tile[1].setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View currentView) {
 				onTilePress(2);
 			}
 		});
-		tile3.setOnClickListener(new View.OnClickListener() {
+		tile[2].setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View currentView) {
 				onTilePress(3);
 			}
 		});
-		tile4.setOnClickListener(new View.OnClickListener() {
+		tile[3].setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View currentView) {
 				onTilePress(4);
 			}
 		});
-		tile5.setOnClickListener(new View.OnClickListener() {
+		tile[4].setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View currentView) {
 				onTilePress(5);
 			}
 		});
-		tile6.setOnClickListener(new View.OnClickListener() {
+		tile[5].setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View currentView) {
 				onTilePress(6);
 			}
 		});
-		tile7.setOnClickListener(new View.OnClickListener() {
+		tile[6].setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View currentView) {
 				onTilePress(7);
 			}
 		});
-		tile8.setOnClickListener(new View.OnClickListener() {
+		tile[7].setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View currentView) {
 				onTilePress(8);
 			}
 		});
-		tile9.setOnClickListener(new View.OnClickListener() {
+		tile[8].setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View currentView) {
 				onTilePress(9);
 			}
 		});
 	}
-	
 
 	/**
 	 * Whenever a tile is pressed this checks to see if it is the hotButton or not as well as starting and stoping the clock, If the player clicks a tile and it is not the hotbutton or there are no more instructions left, the game is over
@@ -178,17 +177,27 @@ public class GameScreen extends Activity {
 		{
 			playerScore++;
 			updatePlayerProgress();
-			//updateGrid1(playerProgress);
+			updateGrid();
 		}
 		else {
 			endGame();
 		}
 	}
 
+	private void updateGrid() {
+		int x = 0;
+		while (x != 9) {
+			gameTile.GameTileColors();
+			tile[x].setBackgroundColor(gameTile.randomColor);
+			x++;
+		}
+
+	}
+
 	/**
 	 * Destroyes the Tiles object than recreates it, this insures a clean playing gird
 	 */
-	private void resetGrid(int tileNumber) {
+	/*private void resetGrid(int tileNumber) {
 		if (gameTile == null) // If tiles is a tiles shaped hole in the universe, or if it has not been created yet,make it
 		{
 			gameTile = new Tiles();
@@ -205,7 +214,7 @@ public class GameScreen extends Activity {
 			endGame();
 		}
 
-	}
+	}*/
 
 	/**
 	 * Creates the players instructions on what to tap
@@ -228,7 +237,7 @@ public class GameScreen extends Activity {
 	 * @param whereIsPlay
 	 *            the index in the Array List of playerProgress
 	 */
-	private void updateGrid1(int whereIsPlayer) // I'm eating cake right now at
+	/*private void updateGrid1(int whereIsPlayer) // I'm eating cake right now at
 												// 2:35 AM ... it tastes good!
 	{
 		int specialTile = (int) Math.ceil(Math.random() * 9); // Generate a random number between one and nine and name it specialTile
@@ -246,7 +255,7 @@ public class GameScreen extends Activity {
 	 * @param whereIsPlayer
 	 *            the index in the Array List of playerProgress
 	 */
-	private void updateGrid(int whereIsPlayer) //I'm eating cake right now at 2:35 AM ... it tastes good!
+	/*private void updateGrid(int whereIsPlayer) //I'm eating cake right now at 2:35 AM ... it tastes good!
 	{
 		int specialTile = (int) Math.ceil(Math.random() * 9); //Generate a random number between one and nine and name it specialTile
 		int currentColor = playerColors.get(whereIsPlayer); //From the instructions, based on the index get from that list the stored Color and name it currentColor
@@ -263,7 +272,7 @@ public class GameScreen extends Activity {
 		tile7.setBackgroundColor(gridPattern[6]);
 		tile8.setBackgroundColor(gridPattern[7]);
 		tile9.setBackgroundColor(gridPattern[8]);
-	}
+	}*/
 
 	private void updateScore(long timeIn, long timeOut) {
 		int returnValue = 0;
@@ -292,6 +301,7 @@ public class GameScreen extends Activity {
 	 */
 	private void updatePlayerProgress() {
 		// TODO
+		playerProgress++;
 	}
 
 	private void nextLevel() {
