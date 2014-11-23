@@ -101,13 +101,11 @@ public class GameScreen extends Activity {
 		playerScore = 0;
 		scoreDisplay.setText("Score: " + playerScore);
 		levelGenerator();
-		/*playerProgress = 0;
+		playerProgress = 0;
 		displayPlayerColors();
 		updatePlayerProgress();
-		updateGrid1(0);
+		//updateGrid1(0);
 		setupListners();
-		reallyGreen = Color.parseColor("#00FF00");
-		reallyRed = Color.parseColor("#FF0000");*/
 
 	}
 
