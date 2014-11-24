@@ -2,14 +2,14 @@ package ctec.color_squared;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -31,8 +31,7 @@ public class GameScreen extends Activity
 	private int[] gridPattern = new int[8];
 	private int playerScore;
 	private TextView scoreDisplay;
-	
-	private int [] colorOrder = {R.color.solRed, R.color.solOrange, R.color.solYellow, R.color.solGreen, R.color.solBlue, R.color.solViolet};
+	private int [] colorOrder;
 	private int score;
 
 	@Override
@@ -53,6 +52,13 @@ public class GameScreen extends Activity
 		scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
 		//TODO Make and initalize other buttons menuButton
 		
+		colorOrder = new int [6];
+		colorOrder[0] = getResources().getColor(R.color.solRed);
+		colorOrder[1] = getResources().getColor(R.color.solOrange);
+		colorOrder[2] = getResources().getColor(R.color.solYellow);
+		colorOrder[3] = getResources().getColor(R.color.solGreen);
+		colorOrder[4] = getResources().getColor(R.color.solBlue);
+		colorOrder[5] = getResources().getColor(R.color.solViolet);
 		
 		playerColors = new ArrayList<Integer>();
 		score = 0;
@@ -91,96 +97,73 @@ public class GameScreen extends Activity
 	
 	private int genIgnoreColor(int ignore)
 	{
-		//List<Integer> colors = new LinkedList(Arrays.asList(colorOrder));
-		Arrays.asList(colorOrder);
-		List<Integer> colors = new ArrayList<Integer>();
+		ArrayList<Integer> colors = new ArrayList<Integer>();
 		for(int i = 0; i < colorOrder.length; i++)
 			if (i != ignore)
 			{
-				colors.add(i);
+				colors.add(colorOrder[i]);
 			}
-		System.out.println(colorOrder.length);
-		System.out.println(ignore);
-		System.out.println(colors.size());
+		//System.out.println(colorOrder.length);
+		//System.out.println(ignore);
+		//System.out.println(colors.size());
 		int rand = (int)(Math.random() * 5);
-		return (Integer) colors.get(rand);
+		System.out.println(colors.get(rand));
+		return colors.get(rand);
 		
 	}
     
 	private void setupListners()
 	{
-		tile1.setOnClickListener(new View.OnClickListener()
+		OnClickListener tileListener = new View.OnClickListener()
 		{
 			@Override
 			public void onClick(View currentView)
 			{
-				onTilePress(1);
+				int tilePressed = 0;
+				
+				switch (currentView.getId())
+				{
+				case R.id.tile1:
+					tilePressed = 1;
+					break;
+				case R.id.tile2:
+					tilePressed = 2;
+					break;
+				case R.id.tile3:
+					tilePressed = 3;
+					break;
+				case R.id.tile4:
+					tilePressed = 4;
+					break;
+				case R.id.tile5:
+					tilePressed = 5;
+					break;
+				case R.id.tile6:
+					tilePressed = 6;
+					break;
+				case R.id.tile7:
+					tilePressed = 7;
+					break;
+				case R.id.tile8:
+					tilePressed = 8;
+					break;
+				case R.id.tile9:
+					tilePressed = 9;
+					break;
+				}
+				onTilePress(tilePressed);
 			}
-		});
-		tile2.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View currentView)
-			{
-				onTilePress(2);
-			}
-		});
-		tile3.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View currentView)
-			{
-				onTilePress(3);	
-			}
-		});
-		tile4.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View currentView)
-			{
-				onTilePress(4);
-			}
-		});
-		tile5.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View currentView)
-			{
-				onTilePress(5);
-			}
-		});
-		tile6.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View currentView)
-			{
-				onTilePress(6);
-			}
-		});
-		tile7.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View currentView)
-			{
-				onTilePress(7);
-			}
-		});
-		tile8.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View currentView)
-			{
-				onTilePress(8);
-			}
-		});
-		tile9.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View currentView)
-			{
-				onTilePress(9);
-			}
-		});
+		};
+		
+		tile1.setOnClickListener(tileListener);
+		tile2.setOnClickListener(tileListener);
+		tile3.setOnClickListener(tileListener);
+		tile4.setOnClickListener(tileListener);
+		tile5.setOnClickListener(tileListener);
+		tile6.setOnClickListener(tileListener);
+		tile7.setOnClickListener(tileListener);
+		tile8.setOnClickListener(tileListener);
+		tile9.setOnClickListener(tileListener);
 	}
 
 /**
