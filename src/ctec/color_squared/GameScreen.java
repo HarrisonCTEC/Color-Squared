@@ -12,16 +12,11 @@ import android.widget.TextView;
 
 /**
  * Game screen
- * 
- * 
- * @author Harrison H, Mark S
- * @version 1.0 11/20/14 ©2014 Orange Lightning Research
- * 
+ *
+ * @author Harrison H
  * @author Mark Shamy
- * @version 1.0 11/20/14 ©2014 Orange Lightning Research
- * 
  * @author Nickolas Koamrnitsky
- * @version 1.0 11/20/14 ©2014 Orange Lightning Research
+ * @version 1.0 11/20/14 Â©2014 Orange Lightning Research
  */
 public class GameScreen extends Activity {
 	private Button[] tile = new Button[10];
@@ -234,6 +229,7 @@ public class GameScreen extends Activity {
 	/**
 	 * Randomly assings colors hotButton, hotColor, and all other tile colors than sets the tiles to those colors
 	 * 
+	 * 
 	 * @param whereIsPlay
 	 *            the index in the Array List of playerProgress
 	 */
@@ -256,9 +252,14 @@ public class GameScreen extends Activity {
 	 *            the index in the Array List of playerProgress
 	 */
 	/*private void updateGrid(int whereIsPlayer) //I'm eating cake right now at 2:35 AM ... it tastes good!
+
+	 * @param whereIsPlayer
+	 *            the index in the Array List of playerProgress
+	 */
+	/*private void updateGrid(int whereIsPlayer)
 	{
 		int specialTile = (int) Math.ceil(Math.random() * 9); //Generate a random number between one and nine and name it specialTile
-		int currentColor = playerColors.get(whereIsPlayer); //From the instructions, based on the index get from that list the stored Color and name it currentColor
+		int currentColor = color[whereIsPlayer]; //From the instructions, based on the index get from that list the stored Color and name it currentColor
 		gameTile.resetGrid(); //Destroy the grid and make a new one
 		gameTile.setHotButton(specialTile); //Tell the new one what tile is special
 		gridPattern = gameTile.fillGameGrid(currentColor); //Have the Tiles class generate an Array of Colors that will be the layout of tile colors

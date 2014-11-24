@@ -7,12 +7,12 @@ import android.view.View;
 import android.widget.Button;
 
 public class title_screen extends Activity {
-/**
- * Main Welcome Screen
- * @author Harrison H
- * @version 1.0
- * ©2014 Orange Lightning Research
- */
+	/**
+	 * Main Welcome Screen
+	 * 
+	 * @author Harrison H
+	 * @version 1.0 ©2014 Orange Lightning Research
+	 */
 	private Button startButton;
 
 	/** Called when the activity is first created. */
@@ -33,7 +33,7 @@ public class title_screen extends Activity {
 			public void onClick(View v) {
 
 				Intent transferIntent = new Intent(title_screen.this, GameScreen.class);
-				startActivityForResult(transferIntent, 0);
+				startActivity(transferIntent);
 
 			}
 		});

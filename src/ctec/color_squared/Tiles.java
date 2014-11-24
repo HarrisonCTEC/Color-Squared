@@ -24,7 +24,6 @@ public class Tiles {
 
 	public static void randomColor() {
 		randomNumber = (int) Math.ceil(Math.random() * 9);
-		int returnValue = 0; //Set a default return value
 		if (randomNumber == 1) //If that randomly generated number is 1
 		{
 			randomColor = Color.BLACK;
@@ -67,9 +66,9 @@ public class Tiles {
 	}
 
 	public static void GameTileColors() {
-		int Black = 1, Red = 1, Green = 1, Yellow = 1, Blue = 1, Cyan = 1, Magenta = 1, Gray = 1, White = 1;
+		int Black = 1, Red = 1, Green = 1, Yellow = 1, Blue = 1, Cyan = 1, Magenta = 1, Gray = 1, White = 1, counter = 0;
+
 		randomNumber = (int) Math.ceil(Math.random() * 9);
-		
 		if (randomNumber == 1 & Black == 1) //If that randomly generated number is 1
 		{
 			randomColor = Color.BLACK;

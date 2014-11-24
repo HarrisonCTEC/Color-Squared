@@ -150,6 +150,7 @@
         <Button
             android:id="@+id/tile3"
             style="@style/gameButton" />
+
     </TableRow>
 
     <TableRow android:gravity="center" >
