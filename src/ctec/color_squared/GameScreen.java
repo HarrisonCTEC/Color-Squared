@@ -60,6 +60,8 @@ public class GameScreen extends Activity
 		colorOrder[4] = getResources().getColor(R.color.solBlue);
 		colorOrder[5] = getResources().getColor(R.color.solViolet);
 		
+		setupListners();
+		
 		playerColors = new ArrayList<Integer>();
 		score = 0;
 		playerScore = 0;
@@ -72,14 +74,17 @@ public class GameScreen extends Activity
 		reallyGreen = Color.parseColor("#00FF00");
 		reallyRed = Color.parseColor("#FF0000");	
 		
-		genTurn(score);
+		genTurn();
 	}
 	
-	private void genTurn(int score)
+	private void genTurn()
 	{
-		int hotButton = (int)(Math.random() * 8);
-		int ignoreColor = (int)(Math.random() * 5);
+		int hotButton = (int)(Math.random() * 8) + 1;
+		int ignoreColor = (int)(score % 6);
 		randomizeGrid(ignoreColor, hotButton);
+		System.out.println((int)(score % 6));
+		System.out.println(score);
+		score++;
 	}
 	
 	private void randomizeGrid(int ignoreColor, int hotButton)
@@ -93,6 +98,36 @@ public class GameScreen extends Activity
 		tile7.setBackgroundColor(genIgnoreColor(ignoreColor));
 		tile8.setBackgroundColor(genIgnoreColor(ignoreColor));
 		tile9.setBackgroundColor(genIgnoreColor(ignoreColor));
+		switch (hotButton)
+		{
+		case 1:
+			tile1.setBackgroundColor(colorOrder[ignoreColor]);
+			break;
+		case 2:
+			tile2.setBackgroundColor(colorOrder[ignoreColor]);
+			break;
+		case 3:
+			tile3.setBackgroundColor(colorOrder[ignoreColor]);
+			break;
+		case 4:
+			tile4.setBackgroundColor(colorOrder[ignoreColor]);
+			break;
+		case 5:
+			tile5.setBackgroundColor(colorOrder[ignoreColor]);
+			break;
+		case 6:
+			tile6.setBackgroundColor(colorOrder[ignoreColor]);
+			break;
+		case 7:
+			tile7.setBackgroundColor(colorOrder[ignoreColor]);
+			break;
+		case 8:
+			tile8.setBackgroundColor(colorOrder[ignoreColor]);
+			break;
+		case 9:
+			tile9.setBackgroundColor(colorOrder[ignoreColor]);
+			break;
+		}
 	}
 	
 	private int genIgnoreColor(int ignore)
@@ -103,11 +138,7 @@ public class GameScreen extends Activity
 			{
 				colors.add(colorOrder[i]);
 			}
-		//System.out.println(colorOrder.length);
-		//System.out.println(ignore);
-		//System.out.println(colors.size());
 		int rand = (int)(Math.random() * 5);
-		System.out.println(colors.get(rand));
 		return colors.get(rand);
 		
 	}
@@ -173,6 +204,7 @@ public class GameScreen extends Activity
  */
 	private void onTilePress(int tileNumber)
 	{
+		/**
 		if(gameTile.isHotButton(tileNumber) && (playerProgress <= 5)) //If the player taped the special button and they are not done with the instructions,
 		{
 			playerScore++;
@@ -190,6 +222,8 @@ public class GameScreen extends Activity
 		{
 				endGame();
 		}
+		**/
+		genTurn();
 	}
 
 /**
