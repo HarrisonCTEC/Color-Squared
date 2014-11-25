@@ -206,41 +206,6 @@ public class GameScreen extends Activity
 		}
 		genTurn();
 	}
-
-/**
- * Creates the players instructions on what to tap
- */
-	private void levelGenerator()
-	{
-		int counter = 0; //This is the escape route out of the while loop
-		while(counter != 6) // Do six times
-		{
-			//playerColors.add(gameTile.randomColor()); //Add the the Array List playColors 6 random Colors
-			counter++; //Take counter and add 1
-		}
-	}
-
-/**
- * Randomly assings colors hotButton, hotColor, and all other tile colors than sets the tiles to those colors
- * @param whereIsPlayer the index in the Array List of playerProgress
- */
-	private void updateGrid(int whereIsPlayer) //I'm eating cake right now at 2:35 AM ... it tastes good!
-	{
-		int specialTile = (int) Math.ceil(Math.random() * 9); //Generate a random number between one and nine and name it specialTile
-		int currentColor = playerColors.get(whereIsPlayer); //From the instructions, based on the index get from that list the stored Color and name it currentColor
-		//gameTile.resetGrid(); //Destroy the grid and make a new one
-		//gameTile.setHotButton(specialTile); //Tell the new one what tile is special
-		//gridPattern = gameTile.fillGameGrid(currentColor); //Have the Tiles class generate an Array of Colors that will be the layout of tile colors
-		tile1.setBackgroundColor(gridPattern[0]); //Set the colors of the tiles
-		tile2.setBackgroundColor(gridPattern[1]);
-		tile3.setBackgroundColor(gridPattern[2]);
-		tile4.setBackgroundColor(gridPattern[3]);
-		tile5.setBackgroundColor(gridPattern[4]);
-		tile6.setBackgroundColor(gridPattern[5]);
-		tile7.setBackgroundColor(gridPattern[6]);
-		tile8.setBackgroundColor(gridPattern[7]);
-		tile9.setBackgroundColor(gridPattern[8]);
-	}
 	
 	/**
 	 * Opens up the final activity and passes the players score there
@@ -249,30 +214,6 @@ public class GameScreen extends Activity
 	{
 		Intent transferIntent = new Intent(getBaseContext(), GameOver.class);
 		startActivityForResult(transferIntent, 0);
-	}
-	
-	/**
-	 * Fills the instruction box with the playColors list
-	 */
-	private void displayPlayerColors()
-	{
-		//TODO
-	}
-	
-	/**
-	 * Changes the color of the outline of the boxes of the instructions from red to green when the player progreses
-	 */
-	private void updatePlayerProgress()
-	{
-		playerProgress++; //Don't change this!
-		//TODO
-	}
-	
-	private void nextLevel()
-	{
-		playerProgress = 0;
-		levelGenerator();
-		//gameTile.resetGrid();
 	}
 	
 	private void inscreaseScore()
