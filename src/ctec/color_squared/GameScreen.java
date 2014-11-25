@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -34,6 +35,7 @@ public class GameScreen extends Activity
 	private TextView scoreDisplay;
 	private int [] colorOrder;
 	private int score;
+	private TextView timerDisplay;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -52,6 +54,7 @@ public class GameScreen extends Activity
 		tile9 = (Button)findViewById(R.id.tile9);
 		scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
 		scoreDisplay.setText("");
+		timerDisplay = (TextView)findViewById(R.id.timerDisplay);
 		//TODO Make and initalize other buttons menuButton
 		
 		colorOrder = new int [6];
@@ -67,6 +70,41 @@ public class GameScreen extends Activity
 		playerColors = new ArrayList<Integer>();
 		playerProgress = 0;
 		state = new GameState();
+
+		
+		Thread timer = new Thread()
+		{
+			@Override
+			public void run() {
+				double time = 5;
+				while (time != 0)
+				{
+					if (Double.toString(time).substring(0, 3).equals("0.1"))
+					{
+						time = 0;
+					}
+					else
+					{
+						time = time - 0.1;
+					}
+					final String stringTime;
+					if (time == 0)
+					{
+						stringTime = "0";
+					}
+					else
+					{
+						stringTime = Double.toString(time).substring(0, 3);
+					}
+					System.out.println(stringTime);
+					runOnUiThread(updateTimer(stringTime));
+					
+					SystemClock.sleep(100);
+				}
+				
+			};
+		};
+		timer.start();
 		
 		genTurn();
 	}
@@ -221,4 +259,19 @@ public class GameScreen extends Activity
 		state.increaseScore();
 		scoreDisplay.setText("Score: " + new Integer(state.getScore()).toString());
 	}
+	
+	private Runnable updateTimer(final String stringTime)
+	{
+		Runnable updateTimer = new Runnable()
+			{
+				@Override
+				public void run()
+				{
+					timerDisplay.setText(stringTime);
+				}
+			};
+		return updateTimer;
+					
+	}
+	
 }
