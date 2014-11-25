@@ -12,7 +12,7 @@ import android.widget.Button;
  * @version 1.0
  * ©2014 Orange Lightning Research
  */
-public class title_screen extends Activity
+public class TitleScreen extends Activity
 {
 	private Button startButton;
 	

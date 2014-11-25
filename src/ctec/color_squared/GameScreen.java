@@ -16,25 +16,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-/**
- * Game screen
- * @author Mark Shamy
- * @version 1.0 11/20/14
- * ©2014 Orange Lightning Research
- */
 public class GameScreen extends Activity
 {
 	private Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9;
-	private ArrayList<Integer> playerColors;
-	private int playerProgress;
 	private GameState state;
-	//private int pink, magenta, red, yellow, orange, green, grue, blue, purple;
-	private int reallyRed, reallyGreen; //For some reason these are ints?
-	private int[] gridPattern = new int[8];
-	private int playerScore;
 	private TextView scoreDisplay;
 	private int [] colorOrder;
-	private int score;
 	private TextView timerDisplay;
 
 	@Override
@@ -55,7 +42,6 @@ public class GameScreen extends Activity
 		scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
 		scoreDisplay.setText("");
 		timerDisplay = (TextView)findViewById(R.id.timerDisplay);
-		//TODO Make and initalize other buttons menuButton
 		
 		colorOrder = new int [6];
 		colorOrder[0] = getResources().getColor(R.color.solRed);
@@ -67,8 +53,6 @@ public class GameScreen extends Activity
 		
 		setupListners();
 		
-		playerColors = new ArrayList<Integer>();
-		playerProgress = 0;
 		state = new GameState();
 
 		
@@ -227,11 +211,10 @@ public class GameScreen extends Activity
 		tile9.setOnClickListener(tileListener);
 	}
 
-/**
- * Whenever a tile is pressed this checks to see if it is the hotButton or not as well as starting and stoping the clock,
- * If the player clicks a tile and it is not the hotbutton or there are no more instructions left, the game is over
- * @param tileNumber the tile that is being pressed
- */
+	/**
+	 * Checks if tile pressed was correct
+	 * @param tileNumber the tile that is being pressed
+	 */
 	private void onTilePress(int tileNumber)
 	{
 		if(state.getHotButton() == tileNumber)
@@ -254,12 +237,20 @@ public class GameScreen extends Activity
 		startActivityForResult(transferIntent, 0);
 	}
 	
+	/**
+	 * Increases score by one
+	 */
 	private void inscreaseScore()
 	{
 		state.increaseScore();
 		scoreDisplay.setText("Score: " + new Integer(state.getScore()).toString());
 	}
 	
+	/**
+	 * Updates the timer display
+	 * @param stringTime The string to display
+	 * @return
+	 */
 	private Runnable updateTimer(final String stringTime)
 	{
 		Runnable updateTimer = new Runnable()

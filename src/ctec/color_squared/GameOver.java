@@ -19,7 +19,7 @@ public class GameOver extends Activity
 	@Override
 	public void onBackPressed()
 	{
-		Intent transferIntent = new Intent(getBaseContext(), title_screen.class);
+		Intent transferIntent = new Intent(getBaseContext(), TitleScreen.class);
 		startActivityForResult(transferIntent, 0);
 	}
 }
