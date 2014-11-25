@@ -51,6 +51,7 @@ public class GameScreen extends Activity
 		tile8 = (Button)findViewById(R.id.tile8);
 		tile9 = (Button)findViewById(R.id.tile9);
 		scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
+		scoreDisplay.setText("0");
 		//TODO Make and initalize other buttons menuButton
 		
 		colorOrder = new int [6];
@@ -76,7 +77,6 @@ public class GameScreen extends Activity
 		state.setHotButton(hotButton);
 		int ignoreColor = (int)(state.getScore() % 6);
 		randomizeGrid(ignoreColor, hotButton);
-		state.increaseScore();
 	}
 	
 	private void randomizeGrid(int ignoreColor, int hotButton)
@@ -198,9 +198,7 @@ public class GameScreen extends Activity
 	{
 		if(state.getHotButton() == tileNumber)
 		{
-			//playerScore++;
-			//updatePlayerProgress();
-			//updateGrid(playerProgress);
+			inscreaseScore();
 		}
 		else
 		{
@@ -275,5 +273,11 @@ public class GameScreen extends Activity
 		playerProgress = 0;
 		levelGenerator();
 		//gameTile.resetGrid();
+	}
+	
+	private void inscreaseScore()
+	{
+		state.increaseScore();
+		scoreDisplay.setText(new Integer(state.getScore()).toString());
 	}
 }

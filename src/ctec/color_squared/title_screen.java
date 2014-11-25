@@ -42,4 +42,10 @@ public class title_screen extends Activity
 			}
 		});
     }
+    
+	@Override
+	public void onBackPressed()
+	{
+
+	}
 }

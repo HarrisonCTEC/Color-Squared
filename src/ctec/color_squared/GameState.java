@@ -9,6 +9,7 @@ public class GameState
 	public void GameState()
 	{
 		this.hotButton = 0;
+		this.score = 0;
 	}
 	
 	public void increaseScore()
