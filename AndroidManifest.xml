@@ -14,7 +14,7 @@
         android:label="@string/app_name" >
         <activity
             android:name=".title_screen"
-            android:label="@string/app_name" 
+            android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +26,10 @@
             android:name=".GameScreen"
             android:label="@string/title_activity_game_screen"
             android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".GameOver"
+            android:label="@string/title_activity_game_over" >
         </activity>
     </application>
 

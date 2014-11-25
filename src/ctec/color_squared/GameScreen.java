@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -74,12 +75,15 @@ public class GameScreen extends Activity
 		reallyGreen = Color.parseColor("#00FF00");
 		reallyRed = Color.parseColor("#FF0000");	
 		
+		gameTile = new Tiles();
+		
 		genTurn();
 	}
 	
 	private void genTurn()
 	{
 		int hotButton = (int)(Math.random() * 8) + 1;
+		gameTile.setHotButton(hotButton);
 		int ignoreColor = (int)(score % 6);
 		randomizeGrid(ignoreColor, hotButton);
 		System.out.println((int)(score % 6));
@@ -204,25 +208,16 @@ public class GameScreen extends Activity
  */
 	private void onTilePress(int tileNumber)
 	{
-		/**
-		if(gameTile.isHotButton(tileNumber) && (playerProgress <= 5)) //If the player taped the special button and they are not done with the instructions,
+		if(gameTile.isHotButton(tileNumber))
 		{
 			playerScore++;
 			updatePlayerProgress();
 			updateGrid(playerProgress);
-		}
-		else if(gameTile.isHotButton(tileNumber) && (playerProgress == 6))
-		{
-			playerScore++;
-			updatePlayerProgress();
-			updateGrid(playerProgress);
-			nextLevel();
 		}
 		else
 		{
 				endGame();
 		}
-		**/
 		genTurn();
 	}
 
@@ -266,7 +261,8 @@ public class GameScreen extends Activity
 	 */
 	private void endGame()
 	{
-		//TODO
+		Intent transferIntent = new Intent(getBaseContext(), GameOver.class);
+		startActivityForResult(transferIntent, 0);
 	}
 	
 	/**
