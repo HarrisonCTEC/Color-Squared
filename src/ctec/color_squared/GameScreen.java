@@ -51,7 +51,7 @@ public class GameScreen extends Activity
 		tile8 = (Button)findViewById(R.id.tile8);
 		tile9 = (Button)findViewById(R.id.tile9);
 		scoreDisplay = (TextView)findViewById(R.id.scoreDisplay);
-		scoreDisplay.setText("0");
+		scoreDisplay.setText("");
 		//TODO Make and initalize other buttons menuButton
 		
 		colorOrder = new int [6];
@@ -219,6 +219,6 @@ public class GameScreen extends Activity
 	private void inscreaseScore()
 	{
 		state.increaseScore();
-		scoreDisplay.setText(new Integer(state.getScore()).toString());
+		scoreDisplay.setText("Score: " + new Integer(state.getScore()).toString());
 	}
 }

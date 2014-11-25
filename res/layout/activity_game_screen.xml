@@ -61,13 +61,17 @@
 		       style="@style/gameButton" />
 		</TableRow>
 
+	<TableRow>
+
 	<TextView
 	    android:id="@+id/scoreDisplay"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="20dp"
 	    android:text="TextView"
 	    android:textColor="@color/solGreen"
-	    android:textSize="24dp" />
+	    android:textSize="25sp" />
 
+	</TableRow>
 	</TableLayout>
 </RelativeLayout>
