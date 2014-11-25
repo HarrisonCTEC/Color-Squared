@@ -9,7 +9,7 @@
        <item name="android:shadowDx">1</item>
        <item name="android:shadowDy">1</item>
        <item name="android:shadowRadius">0.6</item>
-       <item name="android:padding">10dip</item>
+       <item name="android:layout_margin">20dp</item>
        <item name="android:width">100dp</item>
        <item name="android:height">100dp</item>
        <item name="android:text">""</item>
