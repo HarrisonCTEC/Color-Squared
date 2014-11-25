@@ -1,54 +1,65 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/TableLayout1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/solBase3"
+<RelativeLayout 
+    android:id="@+id/relative_1"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:gravity="center"
-    android:layout_gravity="center"
-    tools:context="${relativePackage}.${activityClass}" >
+    android:background="@color/solBase3" >
 
-	<TableRow>
-    <Button
-        android:id="@+id/tile1"
-        style="@style/gameButton" />
-
-    <Button
-        android:id="@+id/tile2"
-        style="@style/gameButton" />
-
-    <Button
-        android:id="@+id/tile3"
-        style="@style/gameButton" />
-	</TableRow>
-
-	<TableRow>
-    <Button
-        android:id="@+id/tile4"
-        style="@style/gameButton" />
-
-    <Button
-        android:id="@+id/tile5"
-        style="@style/gameButton" />
-
-    <Button
-        android:id="@+id/tile6"
-        style="@style/gameButton" />
-    </TableRow>
-
-	<TableRow>
-    <Button
-        android:id="@+id/tile7"
-        style="@style/gameButton" />
-
-    <Button
-        android:id="@+id/tile8"
-        style="@style/gameButton" />
-
-    <Button
-        android:id="@+id/tile9"
-        style="@style/gameButton" />
-	</TableRow>
+	 <TableLayout 
+	       android:layout_centerHorizontal="true"
+	       android:layout_width="wrap_content"
+	       android:layout_height="wrap_content"
+	       android:layout_centerInParent="true"    
+	       android:clickable="false"
+	       android:focusable="false"
+	       android:layoutDirection="rtl"
+	       android:focusableInTouchMode="false"
+	       android:longClickable="false"
+	       android:gravity="center_horizontal"
+	       android:orientation="vertical" >
+	
+		<TableRow>
+		   <Button
+		       android:id="@+id/tile1"
+		       style="@style/gameButton" />
+		
+		   <Button
+		       android:id="@+id/tile2"
+		       style="@style/gameButton" />
+		
+		   <Button
+		       android:id="@+id/tile3"
+		       style="@style/gameButton" />
+		</TableRow>
+		
+		<TableRow>
+		   <Button
+		       android:id="@+id/tile4"
+		       style="@style/gameButton" />
+		
+		   <Button
+		       android:id="@+id/tile5"
+		       style="@style/gameButton" />
+		
+		   <Button
+		       android:id="@+id/tile6"
+		       style="@style/gameButton" />
+		   </TableRow>
+		
+		<TableRow>
+		   <Button
+		       android:id="@+id/tile7"
+		       style="@style/gameButton" />
+		
+		   <Button
+		       android:id="@+id/tile8"
+		       style="@style/gameButton" />
+		
+		   <Button
+		       android:id="@+id/tile9"
+		       style="@style/gameButton" />
+		</TableRow>
 
 	<TextView
 	    android:id="@+id/scoreDisplay"
@@ -58,4 +69,5 @@
 	    android:textColor="@color/solGreen"
 	    android:textSize="24dp" />
 
-</TableLayout>
+	</TableLayout>
+</RelativeLayout>
