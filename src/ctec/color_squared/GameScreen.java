@@ -26,7 +26,7 @@ public class GameScreen extends Activity
 	private Button tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9;
 	private ArrayList<Integer> playerColors;
 	private int playerProgress;
-	private Tiles gameTile;
+	private GameState state;
 	//private int pink, magenta, red, yellow, orange, green, grue, blue, purple;
 	private int reallyRed, reallyGreen; //For some reason these are ints?
 	private int[] gridPattern = new int[8];
@@ -64,18 +64,8 @@ public class GameScreen extends Activity
 		setupListners();
 		
 		playerColors = new ArrayList<Integer>();
-		score = 0;
-		playerScore = 0;
-		//levelGenerator();
 		playerProgress = 0;
-		//displayPlayerColors();
-		//updatePlayerProgress();
-		//updateGrid(0);
-		//setupListners();
-		reallyGreen = Color.parseColor("#00FF00");
-		reallyRed = Color.parseColor("#FF0000");	
-		
-		gameTile = new Tiles();
+		state = new GameState();
 		
 		genTurn();
 	}
@@ -83,12 +73,10 @@ public class GameScreen extends Activity
 	private void genTurn()
 	{
 		int hotButton = (int)(Math.random() * 8) + 1;
-		gameTile.setHotButton(hotButton);
-		int ignoreColor = (int)(score % 6);
+		state.setHotButton(hotButton);
+		int ignoreColor = (int)(state.getScore() % 6);
 		randomizeGrid(ignoreColor, hotButton);
-		System.out.println((int)(score % 6));
-		System.out.println(score);
-		score++;
+		state.increaseScore();
 	}
 	
 	private void randomizeGrid(int ignoreColor, int hotButton)
@@ -208,11 +196,11 @@ public class GameScreen extends Activity
  */
 	private void onTilePress(int tileNumber)
 	{
-		if(gameTile.isHotButton(tileNumber))
+		if(state.getHotButton() == tileNumber)
 		{
-			playerScore++;
-			updatePlayerProgress();
-			updateGrid(playerProgress);
+			//playerScore++;
+			//updatePlayerProgress();
+			//updateGrid(playerProgress);
 		}
 		else
 		{
@@ -229,7 +217,7 @@ public class GameScreen extends Activity
 		int counter = 0; //This is the escape route out of the while loop
 		while(counter != 6) // Do six times
 		{
-			playerColors.add(gameTile.randomColor()); //Add the the Array List playColors 6 random Colors
+			//playerColors.add(gameTile.randomColor()); //Add the the Array List playColors 6 random Colors
 			counter++; //Take counter and add 1
 		}
 	}
@@ -242,9 +230,9 @@ public class GameScreen extends Activity
 	{
 		int specialTile = (int) Math.ceil(Math.random() * 9); //Generate a random number between one and nine and name it specialTile
 		int currentColor = playerColors.get(whereIsPlayer); //From the instructions, based on the index get from that list the stored Color and name it currentColor
-		gameTile.resetGrid(); //Destroy the grid and make a new one
-		gameTile.setHotButton(specialTile); //Tell the new one what tile is special
-		gridPattern = gameTile.fillGameGrid(currentColor); //Have the Tiles class generate an Array of Colors that will be the layout of tile colors
+		//gameTile.resetGrid(); //Destroy the grid and make a new one
+		//gameTile.setHotButton(specialTile); //Tell the new one what tile is special
+		//gridPattern = gameTile.fillGameGrid(currentColor); //Have the Tiles class generate an Array of Colors that will be the layout of tile colors
 		tile1.setBackgroundColor(gridPattern[0]); //Set the colors of the tiles
 		tile2.setBackgroundColor(gridPattern[1]);
 		tile3.setBackgroundColor(gridPattern[2]);
@@ -286,6 +274,6 @@ public class GameScreen extends Activity
 	{
 		playerProgress = 0;
 		levelGenerator();
-		gameTile.resetGrid();
+		//gameTile.resetGrid();
 	}
 }
