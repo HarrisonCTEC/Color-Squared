@@ -95,13 +95,9 @@ public class GameScreen extends Activity {
 		scoreDisplay = (TextView) findViewById(R.id.scoreDisplay);
 		levelDisplay = (TextView) findViewById(R.id.levelDisplay); //REMEMBER TO PUT THIS IN THE LAYOUT STUPID!!!!!
 		setupListners();
-		//Debugging();
 		levelGenerator();
-		updateGameGrid();
+		//updateGameGrid();
 
-	}
-
-	private void Debugging() {
 	}
 
 	private void setupListners() {
@@ -164,21 +160,22 @@ public class GameScreen extends Activity {
 		color4.setBackgroundColor(playerColors.get(3));
 		color5.setBackgroundColor(playerColors.get(4));
 		color6.setBackgroundColor(playerColors.get(5));
+
 	}
 
 	private int RandomItem;
 
 	private void pickRandomItem() {
-		int special = (int) Math.ceil(Math.random() * notUsedColors.size());
+		int special = (int) Math.ceil(Math.random() * 9);
 		RandomItem = gameColors[special];
 	}
 
 	private void updateGameGrid() {
-		int special = (int) Math.ceil(Math.random() * 9);
+		int special = (int) Math.ceil(Math.random() * notUsedColors.size());
 		int currentColor = playerColors.get(playerProgress);
 
-		hotButton = special;
 		hotColor = currentColor;
+		hotButton = hotColor;
 
 		notUsedColors.remove(hotColor);
 		fillGameGridList();
@@ -195,15 +192,17 @@ public class GameScreen extends Activity {
 	}
 
 	private void fillGameGridList() {
-		for (Integer color : gameColors) {
-			if (color != hotColor) {
-				gameGrid.add(color);
-				notUsedColors.remove(color);
+		int x = 0;
+		while (x != 8) {
+			if (gameColors[x] != hotColor) {
+				gameGrid.add(gameColors[x]);
+				notUsedColors.remove(gameColors[x]);
 			}
-			else if (color == hotColor) {
-				gameGrid.add(color);
+			else if (gameColors[0] == hotColor) {
+				gameGrid.add(gameColors[x]);
 			}
 		}
+
 	}
 
 	private void resetGrid() {
@@ -222,7 +221,8 @@ public class GameScreen extends Activity {
 			//Play click sound
 		}
 		else if ((tileNumber == hotButton) && (playerProgress == 6)) {
-			nextLevel();
+			//nextLevel();
+			endGame();
 		}
 	}
 
