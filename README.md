@@ -7,6 +7,5 @@ Color²
 
 color scheme: <http://ethanschoonover.com/solarized>
 
-
-# Concept Art
-![Mockup](Concept/UI.bmp)
+# Screenshot
+![Screenshot](screen.png)
