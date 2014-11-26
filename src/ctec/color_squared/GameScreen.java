@@ -202,7 +202,14 @@ public class GameScreen extends Activity {
 				gameGrid.add(gameColors[x]);
 			}
 		}
-
+		//Down below, this is supposed to take the hotColor out of the list and put it back in at the
+		//correct position, acording to the hotButton number.
+		int color = hotColor;
+		int index = gameGrid.indexOf(hotColor);
+		int newIndex = hotButton;
+		
+		gameGrid.remove(index);
+		gameGrid.add(newIndex, color);
 	}
 
 	private void resetGrid() {
