@@ -3,10 +3,12 @@ package ctec.color_squared;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,6 +33,7 @@ public class GameScreen extends Activity {
 	private MediaPlayer fail;
 	private MediaPlayer levelUp;
 	private MediaPlayer buttonClick;
+	private Vibrator bad;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +100,8 @@ public class GameScreen extends Activity {
 		fail =  MediaPlayer.create(this, R.raw.fail);
 		levelUp = MediaPlayer.create(this, R.raw.levelup);
 		buttonClick = MediaPlayer.create(this, R.raw.click);
+		
+		Vibrator bad = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 		
 		scoreDisplay = (TextView) findViewById(R.id.scoreDisplay);
 		levelDisplay = (TextView) findViewById(R.id.levelDisplay);
@@ -219,6 +224,7 @@ public class GameScreen extends Activity {
 		else
 		{
 			fail.start(); //Sound
+			bad.vibrate(500);
 			endGame();
 		}
 	}
@@ -239,7 +245,6 @@ public class GameScreen extends Activity {
 
 	private void endGame() 
 	{
-		//Play Bad sound
 		//Vibrate 500 milliseconds
 		Intent passScore = new Intent(GameScreen.this, GameOver.class);
 		startActivityForResult(passScore, playerScore);
