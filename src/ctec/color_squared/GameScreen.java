@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,9 @@ public class GameScreen extends Activity {
 	private int playerScore, level, playerProgress;
 	private TextView scoreDisplay;
 	private TextView levelDisplay;
+	private MediaPlayer fail;
+	private MediaPlayer levelUp;
+	private MediaPlayer buttonClick;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +93,11 @@ public class GameScreen extends Activity {
 		notUsedColors.add(grue);
 		notUsedColors.add(blue);
 		notUsedColors.add(purple);
-
+		
+		fail =  MediaPlayer.create(this, R.raw.fail);
+		levelUp = MediaPlayer.create(this, R.raw.levelup);
+		buttonClick = MediaPlayer.create(this, R.raw.click);
+		
 		scoreDisplay = (TextView) findViewById(R.id.scoreDisplay);
 		levelDisplay = (TextView) findViewById(R.id.levelDisplay);
 		
@@ -194,10 +202,11 @@ public class GameScreen extends Activity {
 			playerProgress += 1;
 			updateAndDisplayScore();
 			updateGameGrid();
-			//Play click sound
+			buttonClick.start();
 		}
 		else if ((tileNumber == hotButton) && (playerProgress == 5))
 		{
+			
 			//Makes new level
 			playerProgress += 1;
 			playerColors.clear();
@@ -205,10 +214,11 @@ public class GameScreen extends Activity {
 			updateGameGrid();
 			levelDisplay.setText("Level: " + level);
 			updateAndDisplayScore();
-			// TODO PUT SOUND HEREnextLevel();
+			levelUp.start(); //Sound
 		}
 		else
 		{
+			fail.start(); //Sound
 			endGame();
 		}
 	}
