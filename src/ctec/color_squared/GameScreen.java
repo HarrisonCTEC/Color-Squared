@@ -14,8 +14,8 @@ import android.widget.TextView;
  * Main mode Color Squared
  * 
  * @author Mark Shamy
- * @debugger Nickolas Komarnitsky
- * @version 1.02 11/25/14 (c) Orange Lightning Research 2014
+ * @author Nickolas Komarnitsky
+ * @version 1.03 11/25/14 (c) Orange Lightning Research 2014
  */
 public class GameScreen extends Activity {
 	public int pink, magenta, red, yellow, orange, green, grue, blue, purple, reallyRed, reallyGreen, black;
@@ -93,91 +93,53 @@ public class GameScreen extends Activity {
 		notUsedColors.add(purple);
 
 		scoreDisplay = (TextView) findViewById(R.id.scoreDisplay);
-		levelDisplay = (TextView) findViewById(R.id.levelDisplay); //REMEMBER TO PUT THIS IN THE LAYOUT STUPID!!!!!
+		levelDisplay = (TextView) findViewById(R.id.levelDisplay);
+		
 		setupListners();
 		levelGenerator();
 		//updateGameGrid();
 
 	}
 
-	private void setupListners() {
-		tile[0].setOnClickListener(new View.OnClickListener() {
-			public void onClick(View currentView) {
-				onTilePress(1);
-			}
-		});
-		tile[1].setOnClickListener(new View.OnClickListener() {
-			public void onClick(View currentView) {
-				onTilePress(2);
-			}
-		});
-		tile[2].setOnClickListener(new View.OnClickListener() {
-			public void onClick(View currentView) {
-				onTilePress(3);
-			}
-		});
-		tile[3].setOnClickListener(new View.OnClickListener() {
-			public void onClick(View currentView) {
-				onTilePress(4);
-			}
-		});
-		tile[4].setOnClickListener(new View.OnClickListener() {
-			public void onClick(View currentView) {
-				onTilePress(5);
-			}
-		});
-		tile[5].setOnClickListener(new View.OnClickListener() {
-			public void onClick(View currentView) {
-				onTilePress(6);
-			}
-		});
-		tile[6].setOnClickListener(new View.OnClickListener() {
-			public void onClick(View currentView) {
-				onTilePress(7);
-			}
-		});
-		tile[7].setOnClickListener(new View.OnClickListener() {
-			public void onClick(View currentView) {
-				onTilePress(8);
-			}
-		});
-		tile[8].setOnClickListener(new View.OnClickListener() {
-			public void onClick(View currentView) {
-				onTilePress(9);
-			}
-		});
+	private void setupListners() 
+	{
+			tile[0].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(1);}});
+			tile[1].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(2);}});
+			tile[2].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(3);}});
+			tile[3].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(4);}});
+			tile[4].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(5);}});
+			tile[5].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(6);}});
+			tile[6].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(7);}});
+			tile[7].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(8);}});
+			tile[8].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(9);}});
 	}
 
-	private void levelGenerator() {
-		while (playerColors.size() != 6) {
-			pickRandomItem();
-			playerColors.add(RandomItem);
+	private void levelGenerator() 
+	{
+		int randomIndex = (int) Math.ceil(Math.random() * 9);
+		
+		while (playerColors.size() != 6) 
+		{
+			playerColors.add(gameColors[randomIndex]);
 		}
-
+		
 		color1.setBackgroundColor(playerColors.get(0));
 		color2.setBackgroundColor(playerColors.get(1));
 		color3.setBackgroundColor(playerColors.get(2));
 		color4.setBackgroundColor(playerColors.get(3));
 		color5.setBackgroundColor(playerColors.get(4));
 		color6.setBackgroundColor(playerColors.get(5));
-
 	}
 
-	private int RandomItem;
-
-	private void pickRandomItem() {
-		int special = (int) Math.ceil(Math.random() * 9);
-		RandomItem = gameColors[special];
-	}
-
-	private void updateGameGrid() {
-		int special = (int) Math.ceil(Math.random() * notUsedColors.size());
+	private void updateGameGrid() 
+	{
+		int randomTile = (int) Math.ceil(Math.random() * 9);
 		int currentColor = playerColors.get(playerProgress);
-
+		
+		//Sets hot button and color
+		hotButton = randomTile;
 		hotColor = currentColor;
-		hotButton = hotColor;
-
-		notUsedColors.remove(hotColor);
+		
 		fillGameGridList();
 
 		tile[0].setBackgroundColor(gameGrid.get(0));
@@ -191,19 +153,23 @@ public class GameScreen extends Activity {
 		tile[8].setBackgroundColor(gameGrid.get(8));
 	}
 
-	private void fillGameGridList() {
-		int x = 0;
-		while (x != 8) {
-			if (gameColors[x] != hotColor) {
-				gameGrid.add(gameColors[x]);
-				notUsedColors.remove(gameColors[x]);
+	private void fillGameGridList() 
+	{
+		int counter = 0;
+		while (counter != 8)
+		{
+			if (gameColors[counter] != hotColor) 
+			{
+				gameGrid.add(gameColors[counter]);
+				notUsedColors.remove(gameColors[counter]);
 			}
-			else if (gameColors[0] == hotColor) {
-				gameGrid.add(gameColors[x]);
+			else if (gameColors[0] == hotColor) 
+			{
+				gameGrid.add(gameColors[counter]);
 			}
 		}
 		//Down below, this is supposed to take the hotColor out of the list and put it back in at the
-		//correct position, acording to the hotButton number.
+		//correct position, according to the hotButton number.
 		int color = hotColor;
 		int index = gameGrid.indexOf(hotColor);
 		int newIndex = hotButton;
@@ -212,68 +178,67 @@ public class GameScreen extends Activity {
 		gameGrid.add(newIndex, color);
 	}
 
-	private void resetGrid() {
+	private void resetGrid() 
+	{
 		fillNotUsedColors();
 		gameGrid.clear();
 		hotColor = 0;
+		hotButton = 0;
 	}
 
-	private void onTilePress(int tileNumber) {
+	private void onTilePress(int tileNumber) 
+	{
 		//Stop clocks
-		if ((tileNumber == hotButton) && (playerProgress != 6)) {
+		if ((tileNumber == hotButton) && (playerProgress != 6)) 
+		{
 			updateBoxes(playerProgress);
 			playerProgress += 1;
 			updateAndDisplayScore();
 			updateGameGrid();
 			//Play click sound
 		}
-		else if ((tileNumber == hotButton) && (playerProgress == 6)) {
+		else if ((tileNumber == hotButton) && (playerProgress == 6))
+		{
 			//nextLevel();
 			endGame();
 		}
 	}
 
-	private void updateBoxes(int playerProg) {
-		if (playerProg == 1) {
-			color1.setBackgroundColor(black);
-		}
-		else if (playerProg == 2) {
-			color2.setBackgroundColor(black);
-		}
-		else if (playerProg == 3) {
-			color3.setBackgroundColor(black);
-		}
-		else if (playerProg == 4) {
-			color4.setBackgroundColor(black);
-		}
-		else if (playerProg == 5) {
-			color5.setBackgroundColor(black);
-		}
+	private void updateBoxes(int playerProg) 
+	{
+		if      (playerProg == 1) {color1.setBackgroundColor(black);}
+		else if (playerProg == 2) {color2.setBackgroundColor(black);}
+		else if (playerProg == 3) {color3.setBackgroundColor(black);}
+		else if (playerProg == 4) {color4.setBackgroundColor(black);}
+		else if (playerProg == 5) {color5.setBackgroundColor(black);}
 	}
 
-	private void updateAndDisplayScore() {
+	private void updateAndDisplayScore() 
+	{
 		scoreDisplay.setText("Score: " + playerScore);
 	}
 
-	private void nextLevel() {
+	private void nextLevel() 
+	{
 		playerProgress += 1;
 		playerColors.clear();
 		levelGenerator();
 		updateGameGrid();
-		level += 1;
 		levelDisplay.setText("Level: " + level);
 		updateAndDisplayScore();
 		// TODO PUT SOUND HERE
 	}
 
-	private void endGame() {
+	private void endGame() 
+	{
 		//Play Bad sound
 		//Vibrate 500 mili
 		Intent passScore = new Intent(GameScreen.this, GameOver.class);
 		startActivityForResult(passScore, playerScore);
 	}
 
-	private void fillNotUsedColors() {
+	private void fillNotUsedColors() 
+	{
 		notUsedColors.add(pink);
 		notUsedColors.add(magenta);
 		notUsedColors.add(red);
