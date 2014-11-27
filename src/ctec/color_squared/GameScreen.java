@@ -28,8 +28,6 @@ public class GameScreen extends Activity {
 	private TextView scoreDisplay;
 	private TextView levelDisplay;
 
-	//	private int timeBasedScore;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -98,7 +96,6 @@ public class GameScreen extends Activity {
 		setupListners();
 		levelGenerator();
 		//updateGameGrid();
-
 	}
 
 	private void setupListners() 
@@ -168,8 +165,9 @@ public class GameScreen extends Activity {
 				gameGrid.add(gameColors[counter]);
 			}
 		}
+		
 		//Down below, this is supposed to take the hotColor out of the list and put it back in at the
-		//correct position, according to the hotButton number.
+		//correct index, according to the hotButton number.
 		int color = hotColor;
 		int index = gameGrid.indexOf(hotColor);
 		int newIndex = hotButton;
@@ -180,6 +178,7 @@ public class GameScreen extends Activity {
 
 	private void resetGrid() 
 	{
+		notUsedColors.clear(); //Fail safe
 		fillNotUsedColors();
 		gameGrid.clear();
 		hotColor = 0;
@@ -189,7 +188,7 @@ public class GameScreen extends Activity {
 	private void onTilePress(int tileNumber) 
 	{
 		//Stop clocks
-		if ((tileNumber == hotButton) && (playerProgress != 6)) 
+		if ((tileNumber == hotButton) && (playerProgress != 5)) 
 		{
 			updateBoxes(playerProgress);
 			playerProgress += 1;
@@ -197,9 +196,19 @@ public class GameScreen extends Activity {
 			updateGameGrid();
 			//Play click sound
 		}
-		else if ((tileNumber == hotButton) && (playerProgress == 6))
+		else if ((tileNumber == hotButton) && (playerProgress == 5))
 		{
-			//nextLevel();
+			//Makes new level
+			playerProgress += 1;
+			playerColors.clear();
+			levelGenerator();
+			updateGameGrid();
+			levelDisplay.setText("Level: " + level);
+			updateAndDisplayScore();
+			// TODO PUT SOUND HEREnextLevel();
+		}
+		else
+		{
 			endGame();
 		}
 	}
@@ -218,21 +227,10 @@ public class GameScreen extends Activity {
 		scoreDisplay.setText("Score: " + playerScore);
 	}
 
-	private void nextLevel() 
-	{
-		playerProgress += 1;
-		playerColors.clear();
-		levelGenerator();
-		updateGameGrid();
-		levelDisplay.setText("Level: " + level);
-		updateAndDisplayScore();
-		// TODO PUT SOUND HERE
-	}
-
 	private void endGame() 
 	{
 		//Play Bad sound
-		//Vibrate 500 mili
+		//Vibrate 500 milliseconds
 		Intent passScore = new Intent(GameScreen.this, GameOver.class);
 		startActivityForResult(passScore, playerScore);
 	}
