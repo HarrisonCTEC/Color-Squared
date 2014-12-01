@@ -23,9 +23,9 @@ import android.widget.TextView;
 public class GameScreen extends Activity {
 	public int pink, magenta, red, yellow, orange, green, grue, blue, purple, reallyRed, reallyGreen, black;
 	private Button[] tile = new Button[9];
-	private Button color1, color2, color3, color4, color5, color6;
+	private Button color1, color2, color3, color4, color5, color6, hotButton;
 	private int[] gameColors = new int[9];
-	private int hotButton, hotColor;
+	private int hotColor;
 	private ArrayList<Integer> playerColors, gameGrid, notUsedColors;
 	private int playerScore, level, playerProgress;
 	private TextView scoreDisplay;
@@ -43,7 +43,6 @@ public class GameScreen extends Activity {
 		level = 1;
 		playerScore = 0;
 		playerProgress = 0;
-		hotButton = 0;
 		hotColor = 0;
 
 		notUsedColors = new ArrayList<Integer>();
@@ -106,31 +105,20 @@ public class GameScreen extends Activity {
 		scoreDisplay = (TextView) findViewById(R.id.scoreDisplay);
 		levelDisplay = (TextView) findViewById(R.id.levelDisplay);
 		
-		setupListners();
 		levelGenerator();
-		//updateGameGrid();
+		updateGameGrid();
 	}
 
-	private void setupListners() 
-	{
-			tile[0].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(1);}});
-			tile[1].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(2);}});
-			tile[2].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(3);}});
-			tile[3].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(4);}});
-			tile[4].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(5);}});
-			tile[5].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(6);}});
-			tile[6].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(7);}});
-			tile[7].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(8);}});
-			tile[8].setOnClickListener(new View.OnClickListener() {public void onClick(View currentView) {onTilePress(9);}});
-	}
 
 	private void levelGenerator() 
 	{
-		int randomIndex = (int) Math.ceil(Math.random() * 9);
 		
-		while (playerColors.size() != 6) 
+		int counter = 0;
+		while (counter != 6) 
 		{
+			int randomIndex = (int) Math.ceil(Math.random() * 9);
 			playerColors.add(gameColors[randomIndex]);
+			counter++;
 		}
 		
 		color1.setBackgroundColor(playerColors.get(0));
@@ -146,47 +134,45 @@ public class GameScreen extends Activity {
 		int randomTile = (int) Math.ceil(Math.random() * 9);
 		int currentColor = playerColors.get(playerProgress);
 		
+		
 		//Sets hot button and color
-		hotButton = randomTile;
+		hotButton = tile[randomTile];
 		hotColor = currentColor;
+		hotButton.setBackgroundColor(currentColor);
 		
 		fillGameGridList();
-
-		tile[0].setBackgroundColor(gameGrid.get(0));
-		tile[1].setBackgroundColor(gameGrid.get(1));
-		tile[2].setBackgroundColor(gameGrid.get(2));
-		tile[3].setBackgroundColor(gameGrid.get(3));
-		tile[4].setBackgroundColor(gameGrid.get(4));
-		tile[5].setBackgroundColor(gameGrid.get(5));
-		tile[6].setBackgroundColor(gameGrid.get(6));
-		tile[7].setBackgroundColor(gameGrid.get(7));
-		tile[8].setBackgroundColor(gameGrid.get(8));
+		hotButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				int x = 0;
+				while(x!=9) {
+					tile[x].setBackgroundColor(Color.WHITE);
+					x++;
+				}
+				onTilePress(true);
+			}
+		});
 	}
 
 	private void fillGameGridList() 
 	{
 		int counter = 0;
-		while (counter != 8)
+		while (counter < 9)
 		{
-			if (gameColors[counter] != hotColor) 
-			{
-				gameGrid.add(gameColors[counter]);
-				notUsedColors.remove(gameColors[counter]);
-			}
-			else if (gameColors[0] == hotColor) 
-			{
-				gameGrid.add(gameColors[counter]);
-			}
+			gameGrid.add(gameColors[counter]);
+			counter++;
 		}
 		
 		//Down below, this is supposed to take the hotColor out of the list and put it back in at the
 		//correct index, according to the hotButton number.
-		int color = hotColor;
-		int index = gameGrid.indexOf(hotColor);
-		int newIndex = hotButton;
+		//int color = hotColor;
+		//int index = gameGrid.indexOf(hotColor);
+		//int newIndex = hotButton;
 		
-		gameGrid.remove(index);
-		gameGrid.add(newIndex, color);
+		//gameGrid.remove(index);
+		//gameGrid.add(newIndex, color);
 	}
 
 	private void resetGrid() 
@@ -195,13 +181,12 @@ public class GameScreen extends Activity {
 		fillNotUsedColors();
 		gameGrid.clear();
 		hotColor = 0;
-		hotButton = 0;
 	}
 
-	private void onTilePress(int tileNumber) 
+	private void onTilePress(boolean isHotButton) 
 	{
 		//Stop clocks
-		if ((tileNumber == hotButton) && (playerProgress != 5)) 
+		if (isHotButton = true && playerProgress != 5) 
 		{
 			updateBoxes(playerProgress);
 			playerProgress += 1;
@@ -209,7 +194,7 @@ public class GameScreen extends Activity {
 			updateGameGrid();
 			buttonClick.start();
 		}
-		else if ((tileNumber == hotButton) && (playerProgress == 5))
+		else if (isHotButton = true && playerProgress == 5)
 		{
 			
 			//Makes new level
