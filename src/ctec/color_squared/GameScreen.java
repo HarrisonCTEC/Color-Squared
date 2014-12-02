@@ -144,7 +144,7 @@ public class GameScreen extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				int y = 0, x=0,z=0;
+				int y = 0, x=0,z=9;
 				while(x!=9) {
 					y = (int) Math.ceil(Math.random()*z);
 					tile[x].setBackgroundColor(playerColors.get(y));
@@ -190,7 +190,7 @@ public class GameScreen extends Activity {
 		if (isHotButton = true && playerProgress != 6) 
 		{
 			updateBoxes(playerProgress);
-			playerProgress += 1;
+			playerProgress++;
 			updateAndDisplayScore();
 			updateGameGrid();
 			buttonClick.start();
@@ -199,7 +199,7 @@ public class GameScreen extends Activity {
 		{
 			
 			//Makes new level
-			playerProgress += 1;
+			playerProgress++;
 			playerColors.clear();
 			levelGenerator();
 			updateGameGrid();
