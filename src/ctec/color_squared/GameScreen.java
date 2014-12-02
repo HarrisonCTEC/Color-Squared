@@ -22,8 +22,8 @@ import android.widget.TextView;
  */
 public class GameScreen extends Activity {
 	public int pink, magenta, red, yellow, orange, green, grue, blue, purple, reallyRed, reallyGreen, black;
-	private Button[] tile = new Button[9];
-	private Button color1, color2, color3, color4, color5, color6, hotButton;
+	private Button[] tile = new Button[9],color = new Button[6];
+	private Button hotButton;
 	private int[] gameColors = new int[9];
 	private int hotColor;
 	private ArrayList<Integer> playerColors, gameGrid, notUsedColors;
@@ -58,6 +58,7 @@ public class GameScreen extends Activity {
 		grue = Color.rgb(0, 96, 76);
 		blue = Color.rgb(0, 0, 255);
 		purple = Color.rgb(128, 0, 128);
+		black = Color.rgb(255, 255, 255);
 
 		gameColors[0] = pink;
 		gameColors[1] = magenta;
@@ -69,12 +70,12 @@ public class GameScreen extends Activity {
 		gameColors[7] = blue;
 		gameColors[8] = purple;
 
-		color1 = (Button) findViewById(R.id.Color1);
-		color2 = (Button) findViewById(R.id.Color2);
-		color3 = (Button) findViewById(R.id.Color3);
-		color4 = (Button) findViewById(R.id.Color4);
-		color5 = (Button) findViewById(R.id.Color5);
-		color6 = (Button) findViewById(R.id.Color6);
+		color[0] = (Button) findViewById(R.id.Color1);
+		color[1] = (Button) findViewById(R.id.Color2);
+		color[2] = (Button) findViewById(R.id.Color3);
+		color[3] = (Button) findViewById(R.id.Color4);
+		color[4] = (Button) findViewById(R.id.Color5);
+		color[5] = (Button) findViewById(R.id.Color6);
 
 		tile[0] = (Button) findViewById(R.id.tile1);
 		tile[1] = (Button) findViewById(R.id.tile2);
@@ -114,19 +115,16 @@ public class GameScreen extends Activity {
 	{
 		
 		int counter = 0;
+		int x = 0;
 		while (counter != 6) 
 		{
 			int randomIndex = (int) Math.ceil(Math.random() * 9);
+			color[x].setBackgroundColor(gameColors[randomIndex]);
 			playerColors.add(gameColors[randomIndex]);
 			counter++;
+			x++;
 		}
 		
-		color1.setBackgroundColor(playerColors.get(0));
-		color2.setBackgroundColor(playerColors.get(1));
-		color3.setBackgroundColor(playerColors.get(2));
-		color4.setBackgroundColor(playerColors.get(3));
-		color5.setBackgroundColor(playerColors.get(4));
-		color6.setBackgroundColor(playerColors.get(5));
 	}
 
 	private void updateGameGrid() 
@@ -138,7 +136,7 @@ public class GameScreen extends Activity {
 		//Sets hot button and color
 		hotButton = tile[randomTile];
 		hotColor = currentColor;
-		hotButton.setBackgroundColor(currentColor);
+		hotButton.setBackgroundColor(hotColor);
 		
 		fillGameGridList();
 		hotButton.setOnClickListener(new View.OnClickListener() {
@@ -146,10 +144,13 @@ public class GameScreen extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				int x = 0;
+				int y = 0, x=0,z=0;
 				while(x!=9) {
-					tile[x].setBackgroundColor(Color.WHITE);
+					y = (int) Math.ceil(Math.random()*z);
+					tile[x].setBackgroundColor(playerColors.get(y));
+					playerColors.remove(y);
 					x++;
+					z--;
 				}
 				onTilePress(true);
 			}
@@ -186,7 +187,7 @@ public class GameScreen extends Activity {
 	private void onTilePress(boolean isHotButton) 
 	{
 		//Stop clocks
-		if (isHotButton = true && playerProgress != 5) 
+		if (isHotButton = true && playerProgress != 6) 
 		{
 			updateBoxes(playerProgress);
 			playerProgress += 1;
@@ -194,7 +195,7 @@ public class GameScreen extends Activity {
 			updateGameGrid();
 			buttonClick.start();
 		}
-		else if (isHotButton = true && playerProgress == 5)
+		else if (isHotButton = true && playerProgress == 6)
 		{
 			
 			//Makes new level
@@ -216,11 +217,12 @@ public class GameScreen extends Activity {
 
 	private void updateBoxes(int playerProg) 
 	{
-		if      (playerProg == 1) {color1.setBackgroundColor(black);}
-		else if (playerProg == 2) {color2.setBackgroundColor(black);}
-		else if (playerProg == 3) {color3.setBackgroundColor(black);}
-		else if (playerProg == 4) {color4.setBackgroundColor(black);}
-		else if (playerProg == 5) {color5.setBackgroundColor(black);}
+		if      (playerProg == 1) {color[0].setBackgroundColor(black);}
+		else if (playerProg == 2) {color[1].setBackgroundColor(black);}
+		else if (playerProg == 3) {color[2].setBackgroundColor(black);}
+		else if (playerProg == 4) {color[3].setBackgroundColor(black);}
+		else if (playerProg == 5) {color[4].setBackgroundColor(black);}
+		else if (playerProg == 6) {color[5].setBackgroundColor(black);}
 	}
 
 	private void updateAndDisplayScore() 
