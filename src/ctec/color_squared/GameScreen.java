@@ -113,16 +113,11 @@ public class GameScreen extends Activity {
 
 	private void levelGenerator() 
 	{
-		
-		int counter = 0;
-		int x = 0;
-		while (counter != 6) 
+		for(int count = 0; count != 6; count++)
 		{
 			int randomIndex = (int) Math.ceil(Math.random() * 9);
-			color[x].setBackgroundColor(gameColors[randomIndex]);
+			color[count].setBackgroundColor(gameColors[randomIndex]);
 			playerColors.add(gameColors[randomIndex]);
-			counter++;
-			x++;
 		}
 		
 	}
@@ -131,8 +126,6 @@ public class GameScreen extends Activity {
 	{
 		int randomTile = (int) Math.ceil(Math.random() * 9);
 		int currentColor = playerColors.get(playerProgress);
-		
-		
 		//Sets hot button and color
 		hotButton = tile[randomTile];
 		hotColor = currentColor;
@@ -143,14 +136,13 @@ public class GameScreen extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				int y = 0, x=0,z=9;
-				while(x!=9) {
-					y = (int) Math.ceil(Math.random()*z);
-					tile[x].setBackgroundColor(playerColors.get(y));
-					playerColors.remove(y);
-					x++;
-					z--;
+
+				int available = 9;
+				for(int x = 0; x != 9; x++, available--)
+				{
+					random = (int) Math.floor(Math.random()*available);
+					tile[x].setBackgroundColor(playerColors.get(random));
+					playerColors.remove(random);
 				}
 				onTilePress(true);
 			}
